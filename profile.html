@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Detailed profile of Arnaud Jouan: education, internships, certifications, and career goals." />
+  <title>Arnaud Jouan | Detailed Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .profile-hero {
+      padding: 3rem 0 1rem;
+    }
+
+    .profile-intro {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .globe-banner {
+      position: relative;
+      margin: 0;
+      padding: 0.85rem 0.95rem;
+      border: 1px solid var(--surface-border);
+      border-radius: calc(var(--radius) - 4px);
+      background: linear-gradient(120deg, rgba(24, 160, 251, 0.14), rgba(45, 212, 191, 0.08));
+      overflow: hidden;
+      min-height: 220px;
+      width: clamp(220px, 32vw, 300px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .globe-canvas-wrap {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(4, 16, 27, 0.45);
+    }
+
+    .globe-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+      border: 1px solid rgba(158, 195, 222, 0.35);
+      background: radial-gradient(circle at 32% 26%, rgba(239, 247, 255, 0.3), rgba(24, 160, 251, 0.12) 42%, rgba(11, 34, 53, 0.7) 100%);
+    }
+
+    .country-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+      width: min(100%, 300px);
+    }
+
+    .country-tag {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      font-weight: 600;
+      background: rgba(6, 20, 33, 0.7);
+      border: 1px solid rgba(158, 195, 222, 0.24);
+      border-radius: 999px;
+      padding: 0.2rem 0.5rem;
+      white-space: nowrap;
+    }
+
+    .section-block {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      padding: 1rem;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .edu-head {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-logo {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid rgba(158, 195, 222, 0.26);
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .timeline-detail {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .timeline-detail-item {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+
+    .timeline-detail-item p + p {
+      margin-top: 0.5rem;
+    }
+
+    .fold-section details {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      overflow: hidden;
+    }
+
+    .fold-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.95rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .fold-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .fold-title {
+      font-family: "Sora", "Space Grotesk", sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .fold-hint {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .fold-section details[open] .fold-hint::before {
+      content: "Hide";
+    }
+
+    .fold-section details:not([open]) .fold-hint::before {
+      content: "Show";
+    }
+
+    .fold-content {
+      padding: 0 1rem 1rem;
+    }
+
+    .detail-list,
+    .impact-list {
+      margin: 0.7rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .impact-list {
+      margin-top: 0.55rem;
+    }
+
+    .cert-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cert-logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      object-fit: contain;
+      padding: 0.25rem;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(158, 195, 222, 0.26);
+    }
+
+    .issuer-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-family: "Sora", sans-serif;
+      font-weight: 700;
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      color: #eff7ff;
+      border: 1px solid rgba(158, 195, 222, 0.28);
+      background: linear-gradient(140deg, rgba(24, 160, 251, 0.3), rgba(45, 212, 191, 0.22));
+    }
+
+    .list-clean {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      .profile-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .globe-banner {
+        min-height: 180px;
+        width: 100%;
+        max-width: 320px;
+        margin-inline: auto;
+        padding-inline: 0.75rem;
+      }
+
+      .country-tag {
+        font-size: 0.69rem;
+        letter-spacing: 0.06em;
+      }
+
+      .globe-canvas-wrap {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .globe-canvas-wrap {
+        box-shadow: 0 8px 22px rgba(4, 16, 27, 0.35);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+
+  <header class="site-header section">
+    <nav class="nav">
+      <a href="index.html" class="brand">AJ</a>
+      <div class="nav-links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="profile-hero reveal">
+      <p class="eyebrow">Detailed Profile</p>
+      <h1>Arnaud Jouan</h1>
+      <div class="profile-intro">
+        <p class="hero-text">
+          Singapore-born, bilingual in English and French, and currently in my 3rd year at EPITECH.
+          I am building a career at the intersection of management, commerce, and information technology.
+        </p>
+        <div class="globe-banner" aria-hidden="true">
+          <div class="globe-canvas-wrap">
+            <canvas id="earthGlobe" class="globe-canvas" width="420" height="420"></canvas>
+          </div>
+          <div class="country-tags">
+            <span class="country-tag">Singapore</span>
+            <span class="country-tag">Vietnam</span>
+            <span class="country-tag">Australia</span>
+            <span class="country-tag">France</span>
+            <span class="country-tag">Canada</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="assets/CV/CV%20Arnaud%20Jouan.pdf" download>Download CV</a>
+        <a class="btn btn-primary" href="index.html">Back to Portfolio</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Career Goal</p>
+        <h2>What I Am Building Toward</h2>
+      </div>
+      <article class="section-block">
+        <p class="muted">
+          I am targeting roles that combine management responsibilities with technology and commercial impact.
+          My objective is to lead projects where business strategy, client value, and software execution are aligned.
+        </p>
+      </article>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Education</p>
+        <h2>Academic Path</h2>
+      </div>
+      <div class="detail-grid">
+        <article class="section-block">
+          <div class="edu-head">
+            <img class="edu-logo" src="assets/logos/epitech%20logo.png" alt="EPITECH logo" loading="lazy" />
+            <h3>EPITECH</h3>
+          </div>
+          <p class="meta">Marseille, France</p>
+          <p class="muted">Diplome d'Etablissement - Expert en Technologies de l'information (Bac +5)</p>
+          <p class="meta">Expected in 2028</p>
+        </article>
+        <article class="section-block">
+          <div class="edu-head">
+            <img class="edu-logo" src="assets/logos/mcgill%20logo.png" alt="McGill University logo" loading="lazy" />
+            <h3>McGill University</h3>
+          </div>
+          <p class="meta">Montreal, Canada</p>
+          <p class="muted">Certificate in Management (Bachelor Degree track)</p>
+          <p class="meta">Expected in 2027</p>
+        </article>
+        <article class="section-block">
+          <div class="edu-head">
+            <img class="edu-logo" src="assets/logos/HEC%20logo.png" alt="HEC logo" loading="lazy" />
+            <h3>HEC</h3>
+          </div>
+          <p class="meta">Paris, France</p>
+          <p class="muted">AI Entrepreneurship Certificate</p>
+          <p class="meta">In progress</p>
+        </article>
+      </div>
+
+      <div class="fold-section" style="margin-top: 1rem;">
+        <details>
+          <summary class="fold-summary">
+            <span class="section-kicker">Education</span>
+            <span class="fold-title">Earlier Education</span>
+            <span class="fold-hint"></span>
+          </summary>
+          <div class="fold-content">
+            <div class="detail-grid">
+              <article class="section-block">
+                <div class="edu-head">
+                  <img class="edu-logo" src="assets/logos/lycee%20saint%20louis%20saint%20marie.png" alt="Lycee Saint-Louis Sainte-Marie logo" loading="lazy" />
+                  <h3>Lycee Saint-Louis Sainte-Marie</h3>
+                </div>
+                <p class="meta">Gignace-la-nerthe, France</p>
+              </article>
+              <article class="section-block">
+                <div class="edu-head">
+                  <img class="edu-logo" src="assets/logos/bmso%20logo.jpg" alt="BMSO logo" loading="lazy" />
+                  <h3>BMSO - Bilingual Montessori School of Paris</h3>
+                </div>
+                <p class="meta">Chantilly, France</p>
+              </article>
+              <article class="section-block">
+                <h3>Australian International School</h3>
+                <p class="meta">Sydney, Australia</p>
+              </article>
+              <article class="section-block">
+                <div class="edu-head">
+                  <img class="edu-logo" src="assets/logos/lfs%20logo.webp" alt="Lycee Francais logo" loading="lazy" />
+                  <h3>Lycee Francais</h3>
+                </div>
+                <p class="meta">Singapore</p>
+              </article>
+              <article class="section-block">
+                <div class="edu-head">
+                  <img class="edu-logo" src="assets/logos/OFS%20logo%20.png" alt="Overseas Family School logo" loading="lazy" />
+                  <h3>Overseas Family School (OFS)</h3>
+                </div>
+                <p class="meta">Singapore</p>
+              </article>
+              <article class="section-block">
+                <div class="edu-head">
+                  <img class="edu-logo" src="assets/logos/eton%20house%20logo.jpg" alt="EtonHouse logo" loading="lazy" />
+                  <h3>EtonHouse</h3>
+                </div>
+                <p class="meta">Singapore</p>
+              </article>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section reveal fold-section">
+      <details open>
+        <summary class="fold-summary">
+          <span class="section-kicker">Experience</span>
+          <span class="fold-title">Internship Details</span>
+          <span class="fold-hint"></span>
+        </summary>
+        <div class="fold-content">
+          <div class="timeline-detail">
+        <article class="timeline-detail-item">
+          <div class="timeline-head">
+            <img class="company-logo" src="assets/logos/logo_Reactis.svg" alt="REACTIS Group logo" loading="lazy" />
+            <h3>REACTIS Group - Software Developer Intern</h3>
+          </div>
+          <p class="meta">Mar 2026 - Present</p>
+          <p class="muted">Working on an aeronautical maintenance application, developing production Java features, and contributing to code quality and sprint delivery with the engineering team.</p>
+          <p class="meta">Languages: Java, SQL, Neo4j, Python</p>
+        </article>
+        <article class="timeline-detail-item">
+          <div class="timeline-head">
+            <img class="company-logo" src="assets/logos/Logo-BARJANE.svg" alt="BARJANE logo" loading="lazy" />
+            <h3>BARJANE - Internal IT Referent Intern</h3>
+          </div>
+          <p class="meta">Sep 2025 - Feb 2026</p>
+          <p class="muted">Managed IT support operations, improved infrastructure reliability, automated recurring processes, and supported website modernization initiatives.</p>
+          <p class="meta">Languages and tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
+        </article>
+        <article class="timeline-detail-item">
+          <div class="timeline-head">
+            <img class="company-logo" src="assets/logos/logo_CPAM.svg" alt="CPAM logo" loading="lazy" />
+            <h3>CPAM (Assurance Maladie) - Java Developer Intern</h3>
+          </div>
+          <p class="meta">Sep 2024 - Dec 2024</p>
+          <p class="muted">Contributed to legacy-to-modern Java migration, refactoring, documentation, and stabilization with targeted fixes and testing support.</p>
+          <p class="meta">Languages and tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
+        </article>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="section reveal fold-section">
+      <details>
+        <summary class="fold-summary">
+          <span class="section-kicker">Certificates</span>
+          <span class="fold-title">Certifications and Test Scores</span>
+          <span class="fold-hint"></span>
+        </summary>
+        <div class="fold-content">
+          <div class="timeline-detail">
+            <article class="timeline-detail-item">
+              <div class="cert-head">
+                <img class="cert-logo" src="assets/logos/mantu%20logo.png" alt="Mantu logo" loading="lazy" />
+                <h3>The Mantu Manager Program (Business Acquisition)</h3>
+              </div>
+              <p class="meta">Mantu · Issued Nov 2025</p>
+            </article>
+            <article class="timeline-detail-item">
+              <div class="cert-head">
+                <img class="cert-logo" src="assets/logos/oxford%20royal.jpg" alt="Oxford Royale logo" loading="lazy" />
+                <h3>Oxford Royale Academy</h3>
+              </div>
+              <p class="meta">University of Oxford · Issued Jul 2022</p>
+            </article>
+            <article class="timeline-detail-item">
+              <div class="cert-head">
+                <img class="cert-logo" src="assets/logos/IELTS%20logo.jpg" alt="IELTS logo" loading="lazy" />
+                <h3>IELTS</h3>
+              </div>
+              <p class="meta">IELTS Official · Issued Jan 2023 · Expired Jan 2025</p>
+            </article>
+            <article class="timeline-detail-item">
+              <div class="cert-head">
+                <img class="cert-logo" src="assets/logos/toefl%20logo.jpg" alt="TOEFL logo" loading="lazy" />
+                <h3>TOEFL iBT</h3>
+              </div>
+              <p class="meta">TOEFL · Issued Jun 2025</p>
+            </article>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="section reveal fold-section">
+      <details>
+        <summary class="fold-summary">
+          <span class="section-kicker">Community</span>
+          <span class="fold-title">Volunteering Experience</span>
+          <span class="fold-hint"></span>
+        </summary>
+        <div class="fold-content">
+          <div class="timeline-detail">
+            <article class="timeline-detail-item">
+              <h3>Vice President of the BDE - EPITECH Marseille</h3>
+              <p class="meta">EPITECH - European Institute of Technology · May 2025 - Mar 2026 (11 months) · Education</p>
+              <ul class="detail-list">
+                <li>Organized student events (parties, integrations, LAN events) to strengthen campus cohesion.</li>
+                <li>Managed the BDE office, led weekly meetings, and coordinated with administration.</li>
+                <li>Planned annual priorities, budget tracking, and local partnerships.</li>
+                <li>Managed social media communication and visual content for student life updates.</li>
+              </ul>
+              <ul class="impact-list">
+                <li>Higher participation in BDE events over the year.</li>
+                <li>Established local company partnerships to support activities.</li>
+                <li>Improved internal and external communication for the BDE.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-detail-item">
+              <h3>Cobra Keeper</h3>
+              <p class="meta">EPITECH - European Institute of Technology · Jan 2025 - Present · Education</p>
+              <ul class="detail-list">
+                <li>Led the Coding Club and Camp through workshops, programming challenges, and events.</li>
+                <li>Coordinated the Cobras team and supported group motivation and execution.</li>
+                <li>Organized open-day activities for prospective students and families.</li>
+              </ul>
+              <ul class="impact-list">
+                <li>Increased participation in Coding Club and Camp activities.</li>
+                <li>Reinforced team engagement and group dynamics.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-detail-item">
+              <h3>Volunteer - Planete Perles (Les Perles de la Cote Bleue)</h3>
+              <p class="meta">Sep 2018 - Present · Environment</p>
+              <ul class="detail-list">
+                <li>Participated in recurring beach and natural-area cleanup operations.</li>
+                <li>Guided children groups and raised awareness on environmental issues.</li>
+              </ul>
+              <ul class="impact-list">
+                <li>Contributed directly to preserving natural spaces along the Cote Bleue.</li>
+                <li>Helped educate dozens of children on environmental respect.</li>
+                <li>Strengthened links between local community actions and ecology efforts.</li>
+              </ul>
+              <p class="meta">Supporting activity: Beach cleanup collaboration with Bootcamp Cote Bleue</p>
+            </article>
+
+            <article class="timeline-detail-item">
+              <h3>Volunteer - Bootcamp Cote Bleue</h3>
+              <p class="meta">Sep 2018 - Present · Health</p>
+              <ul class="detail-list">
+                <li>Moderated and edited YouTube videos to promote bootcamp sessions.</li>
+                <li>Managed community communication across social platforms.</li>
+                <li>Developed a modern website to improve online visibility.</li>
+                <li>Participated in bootcamp sessions to support members and engagement.</li>
+              </ul>
+              <ul class="impact-list">
+                <li>Increased digital visibility and participant growth.</li>
+                <li>Built a stronger and more active social community.</li>
+                <li>Improved group cohesion during sessions through active support.</li>
+              </ul>
+              <p class="meta">Supporting activity: Bootcamp Cote Bleue session highlights</p>
+            </article>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="section reveal fold-section">
+      <details>
+        <summary class="fold-summary">
+          <span class="section-kicker">Projects</span>
+          <span class="fold-title">Additional Initiatives</span>
+          <span class="fold-hint"></span>
+        </summary>
+        <div class="fold-content">
+          <div class="timeline-detail">
+            <article class="timeline-detail-item">
+              <h3>JEB Incubator - Survivor Seminar EPITECH</h3>
+              <p class="meta">Sep 2025 · Associated with EPITECH - European Institute of Technology</p>
+              <p class="muted">Delivered in 21 days a web platform designed to showcase incubator projects and facilitate connections between startups, investors, and partners.</p>
+              <ul class="detail-list">
+                <li>Built project catalog pages, startup spaces, internal messaging, news, and event calendar features.</li>
+                <li>Implemented a full backend with CRUD operations and synchronized database integration with an existing API.</li>
+                <li>Developed a responsive, accessibility-focused frontend and an admin back-office for content, user, and statistics management.</li>
+                <li>Worked in agile mode with continuous client feedback and evolving requirements on features, priorities, and design.</li>
+              </ul>
+              <ul class="impact-list">
+                <li>Grade A for the project delivery.</li>
+                <li>Functional solution delivered within a short timeline.</li>
+                <li>Strengthened fullstack, UX/UI, client management, and agile collaboration skills.</li>
+              </ul>
+              <p class="meta">Tech stack: Vite, Vue.js, Django, Python, Docker, GitHub Actions</p>
+              <p class="meta">Supporting material: Project presentation, main website page</p>
+            </article>
+
+            <article class="timeline-detail-item">
+              <h3>Hackathon KEDGE Business School x EPITECH</h3>
+              <p class="meta">Mar 2025 - Apr 2025 · Associated with EPITECH - European Institute of Technology</p>
+              <p class="muted">Contributed to solving a real business challenge for Biotech One by combining technical perspective with market and strategic analysis.</p>
+              <ul class="detail-list">
+                <li>Analyzed ingredient profitability to recommend the strongest economic option.</li>
+                <li>Performed market research and competitive analysis to identify trends, opportunities, and customer needs.</li>
+                <li>Collected Voice of Customer insights through interviews and field feedback.</li>
+                <li>Built a full business model including SWOT, value proposition, target markets, and cost estimations.</li>
+              </ul>
+              <ul class="impact-list">
+                <li>Delivered a complete strategic report to Biotech One at the end of the hackathon.</li>
+                <li>Developed stronger business analysis, marketing, and cross-school collaboration skills.</li>
+                <li>Gained practical experience solving a real enterprise problem.</li>
+              </ul>
+              <p class="meta">Supporting material: Final presentation with KEDGE team (Biotech One hackathon)</p>
+            </article>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker">Core Strengths</p>
+        <h2>Skills Snapshot</h2>
+      </div>
+      <div class="detail-grid">
+        <article class="section-block">
+          <h3>Technical</h3>
+          <ul class="list-clean">
+            <li>Java, SQL, Python</li>
+            <li>Web: HTML, CSS, JavaScript</li>
+            <li>Git workflow and code quality tools</li>
+          </ul>
+        </article>
+        <article class="section-block">
+          <h3>Professional</h3>
+          <ul class="list-clean">
+            <li>Agile teamwork and sprint delivery</li>
+            <li>Cross-functional communication</li>
+            <li>Process optimization and automation</li>
+          </ul>
+        </article>
+        <article class="section-block">
+          <h3>Languages</h3>
+          <ul class="list-clean">
+            <li>English (bilingual)</li>
+            <li>French (bilingual)</li>
+            <li>Spanish (limited working proficiency)</li>
+            <li>Chinese (elementary proficiency)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section footer">
+    <p><span id="year"></span> Arnaud Jouan. Detailed profile page.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
