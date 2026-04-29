@@ -94,7 +94,7 @@ function initEarthGlobe() {
 
     return {
       x: radius * cosLat * Math.sin(deltaLon),
-      y: radius * (cosCenterLat * sinLat - sinCenterLat * cosLat * cosDeltaLon),
+      y: -radius * (cosCenterLat * sinLat - sinCenterLat * cosLat * cosDeltaLon),
       visibility,
     };
   }
@@ -410,7 +410,7 @@ function initEarthGlobe() {
     lastPointerX = event.clientX;
     lastPointerY = event.clientY;
     rotation -= deltaX * dragSensitivity;
-    centerLat -= deltaY * tiltSensitivity;
+    centerLat += deltaY * tiltSensitivity;
     centerLat = Math.max(-maxTilt, Math.min(maxTilt, centerLat));
 
     if (prefersReducedMotion) {
