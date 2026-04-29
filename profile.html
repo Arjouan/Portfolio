@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Detailed profile of Arnaud Jouan: education, internships, certifications, and career goals." />
-  <title>Arnaud Jouan | Detailed Profile</title>
+  <meta name="description" content="Detailed profile of Arnaud Jouan: education, internships, certifications, and career goals." data-i18n="meta.description.profile" data-i18n-attr="content" />
+  <title data-i18n="meta.title.profile">Arnaud Jouan | Detailed Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -20,6 +20,10 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 1.25rem;
       align-items: center;
+    }
+
+    .hero-text p + p {
+      margin-top: 0.75rem;
     }
 
     .globe-banner {
@@ -272,20 +276,27 @@
     <nav class="nav">
       <a href="index.html" class="brand">AJ</a>
       <div class="nav-links">
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#experience">Experience</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index.html#projects" data-i18n="nav.projects">Projects</a>
+        <a href="index.html#experience" data-i18n="nav.experience">Experience</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="lang-toggle" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="fr">FR</button>
       </div>
     </nav>
 
     <section class="profile-hero reveal">
-      <p class="eyebrow">Detailed Profile</p>
+      <p class="eyebrow" data-i18n="profile.eyebrow">Detailed Profile</p>
       <h1>Arnaud Jouan</h1>
       <div class="profile-intro">
-        <p class="hero-text">
-          Singapore-born, bilingual in English and French, and currently in my 3rd year at EPITECH.
-          I am building a career at the intersection of management, commerce, and information technology.
-        </p>
+        <div class="hero-text" data-i18n-html="profile.heroText">
+          <p><strong>What I Am Building Toward</strong></p>
+          <p>I am targeting roles that combine management responsibilities with technology and commercial impact. My objective is to lead projects where business strategy, client value, and software execution are perfectly aligned.</p>
+          <p>Born in Singapore with French nationality, I am a true global citizen. Having lived across four continents - in Singapore, Vietnam, Australia, and France - and with upcoming studies in Canada, I am fully bilingual in English and French. This international journey has given me a highly adaptable mindset and a deep appreciation for cross-cultural collaboration.</p>
+          <p>My professional journey is rooted in solving complex technical challenges and optimizing infrastructures. From modernizing legacy Java systems at CPAM des Bouches-du-Rhone to acting as the sole internal IT referent at BARJANE, I thrive on building secure, efficient, and scalable tech solutions. Currently, I am further honing my development skills as a Software Engineer at REACTIS Group.</p>
+          <p>Beyond the code, I know that technology is most powerful when aligned with business strategy. As Regional Director and Business Manager for Junior Conseil Taker, I built the Marseille branch from the ground up, managing cross-functional teams, driving B2B sales, and managing end-to-end client projects. Whether I am defining regional strategies or modeling business solutions at hackathons, I am passionate about bridging the gap between technical execution and commercial growth.</p>
+        </div>
         <div class="globe-banner" aria-hidden="true">
           <div class="globe-canvas-wrap">
             <canvas id="earthGlobe" class="globe-canvas" width="420" height="420"></canvas>
@@ -300,9 +311,9 @@
         </div>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="assets/CV/CV%20Arnaud%20Jouan.pdf" download>Download CV</a>
-        <a class="btn btn-primary" href="index.html">Back to Portfolio</a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn btn-primary" href="assets/CV/CV%20Arnaud%20Jouan.pdf" download data-i18n="profile.ctaDownload">Download CV</a>
+        <a class="btn btn-primary" href="index.html" data-i18n="profile.ctaBack">Back to Portfolio</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer" data-i18n="profile.ctaLinkedin">LinkedIn</a>
       </div>
     </section>
   </header>
@@ -310,11 +321,11 @@
   <main>
     <section class="section reveal">
       <div class="section-title-wrap">
-        <p class="section-kicker">Career Goal</p>
-        <h2>What I Am Building Toward</h2>
+        <p class="section-kicker" data-i18n="career.kicker">Career Goal</p>
+        <h2 data-i18n="career.title">What I Am Building Toward</h2>
       </div>
       <article class="section-block">
-        <p class="muted">
+        <p class="muted" data-i18n="career.body">
           I am targeting roles that combine management responsibilities with technology and commercial impact.
           My objective is to lead projects where business strategy, client value, and software execution are aligned.
         </p>
@@ -323,8 +334,8 @@
 
     <section class="section reveal">
       <div class="section-title-wrap">
-        <p class="section-kicker">Education</p>
-        <h2>Academic Path</h2>
+        <p class="section-kicker" data-i18n="education.kicker">Education</p>
+        <h2 data-i18n="education.title">Academic Path</h2>
       </div>
       <div class="detail-grid">
         <article class="section-block">
@@ -332,35 +343,35 @@
             <img class="edu-logo" src="assets/logos/epitech%20logo.png" alt="EPITECH logo" loading="lazy" />
             <h3>EPITECH</h3>
           </div>
-          <p class="meta">Marseille, France</p>
-          <p class="muted">Diplome d'Etablissement - Expert en Technologies de l'information (Bac +5)</p>
-          <p class="meta">Expected in 2028</p>
+          <p class="meta" data-i18n="education.epitech.location">Marseille, France</p>
+          <p class="muted" data-i18n="education.epitech.program">Diplome d'Etablissement - Expert en Technologies de l'information (Bac +5)</p>
+          <p class="meta" data-i18n="education.epitech.expected">Expected in 2028</p>
         </article>
         <article class="section-block">
           <div class="edu-head">
             <img class="edu-logo" src="assets/logos/mcgill%20logo.png" alt="McGill University logo" loading="lazy" />
             <h3>McGill University</h3>
           </div>
-          <p class="meta">Montreal, Canada</p>
-          <p class="muted">Certificate in Management (Bachelor Degree track)</p>
-          <p class="meta">Expected in 2027</p>
+          <p class="meta" data-i18n="education.mcgill.location">Montreal, Canada</p>
+          <p class="muted" data-i18n="education.mcgill.program">Certificate in Management (Bachelor Degree track)</p>
+          <p class="meta" data-i18n="education.mcgill.expected">Expected in 2027</p>
         </article>
         <article class="section-block">
           <div class="edu-head">
             <img class="edu-logo" src="assets/logos/HEC%20logo.png" alt="HEC logo" loading="lazy" />
             <h3>HEC</h3>
           </div>
-          <p class="meta">Paris, France</p>
-          <p class="muted">AI Entrepreneurship Certificate</p>
-          <p class="meta">In progress</p>
+          <p class="meta" data-i18n="education.hec.location">Paris, France</p>
+          <p class="muted" data-i18n="education.hec.program">AI Entrepreneurship Certificate</p>
+          <p class="meta" data-i18n="education.hec.status">In progress</p>
         </article>
       </div>
 
       <div class="fold-section" style="margin-top: 1rem;">
         <details>
           <summary class="fold-summary">
-            <span class="section-kicker">Education</span>
-            <span class="fold-title">Earlier Education</span>
+            <span class="section-kicker" data-i18n="education.kicker">Education</span>
+            <span class="fold-title" data-i18n="education.earlier">Earlier Education</span>
             <span class="fold-hint"></span>
           </summary>
           <div class="fold-content">
@@ -413,8 +424,8 @@
     <section class="section reveal fold-section">
       <details open>
         <summary class="fold-summary">
-          <span class="section-kicker">Experience</span>
-          <span class="fold-title">Internship Details</span>
+          <span class="section-kicker" data-i18n="experience.kicker.profile">Experience</span>
+          <span class="fold-title" data-i18n="experience.title.profile">Internship Details</span>
           <span class="fold-hint"></span>
         </summary>
         <div class="fold-content">
@@ -425,8 +436,8 @@
             <h3>REACTIS Group - Software Developer Intern</h3>
           </div>
           <p class="meta">Mar 2026 - Present</p>
-          <p class="muted">Working on an aeronautical maintenance application, developing production Java features, and contributing to code quality and sprint delivery with the engineering team.</p>
-          <p class="meta">Languages: Java, SQL, Neo4j, Python</p>
+          <p class="muted" data-i18n="experience.reactis.body">Working on an aeronautical maintenance application, developing production Java features, and contributing to code quality and sprint delivery with the engineering team.</p>
+          <p class="meta" data-i18n="experience.reactis.tools">Languages: Java, SQL, Neo4j, Python</p>
         </article>
         <article class="timeline-detail-item">
           <div class="timeline-head">
@@ -434,8 +445,8 @@
             <h3>BARJANE - Internal IT Referent Intern</h3>
           </div>
           <p class="meta">Sep 2025 - Feb 2026</p>
-          <p class="muted">Managed IT support operations, improved infrastructure reliability, automated recurring processes, and supported website modernization initiatives.</p>
-          <p class="meta">Languages and tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
+          <p class="muted" data-i18n="experience.barjane.body">Managed IT support operations, improved infrastructure reliability, automated recurring processes, and supported website modernization initiatives.</p>
+          <p class="meta" data-i18n="experience.barjane.tools">Languages and tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
         </article>
         <article class="timeline-detail-item">
           <div class="timeline-head">
@@ -443,8 +454,8 @@
             <h3>CPAM (Assurance Maladie) - Java Developer Intern</h3>
           </div>
           <p class="meta">Sep 2024 - Dec 2024</p>
-          <p class="muted">Contributed to legacy-to-modern Java migration, refactoring, documentation, and stabilization with targeted fixes and testing support.</p>
-          <p class="meta">Languages and tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
+          <p class="muted" data-i18n="experience.cpam.body">Contributed to legacy-to-modern Java migration, refactoring, documentation, and stabilization with targeted fixes and testing support.</p>
+          <p class="meta" data-i18n="experience.cpam.tools">Languages and tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
         </article>
           </div>
         </div>
@@ -454,8 +465,8 @@
     <section class="section reveal fold-section">
       <details>
         <summary class="fold-summary">
-          <span class="section-kicker">Certificates</span>
-          <span class="fold-title">Certifications and Test Scores</span>
+          <span class="section-kicker" data-i18n="cert.kicker">Certificates</span>
+          <span class="fold-title" data-i18n="cert.title">Certifications and Test Scores</span>
           <span class="fold-hint"></span>
         </summary>
         <div class="fold-content">
@@ -465,28 +476,28 @@
                 <img class="cert-logo" src="assets/logos/mantu%20logo.png" alt="Mantu logo" loading="lazy" />
                 <h3>The Mantu Manager Program (Business Acquisition)</h3>
               </div>
-              <p class="meta">Mantu · Issued Nov 2025</p>
+              <p class="meta" data-i18n="cert.mantu.meta">Mantu · Issued Nov 2025</p>
             </article>
             <article class="timeline-detail-item">
               <div class="cert-head">
                 <img class="cert-logo" src="assets/logos/oxford%20royal.jpg" alt="Oxford Royale logo" loading="lazy" />
                 <h3>Oxford Royale Academy</h3>
               </div>
-              <p class="meta">University of Oxford · Issued Jul 2022</p>
+              <p class="meta" data-i18n="cert.oxford.meta">University of Oxford · Issued Jul 2022</p>
             </article>
             <article class="timeline-detail-item">
               <div class="cert-head">
                 <img class="cert-logo" src="assets/logos/IELTS%20logo.jpg" alt="IELTS logo" loading="lazy" />
                 <h3>IELTS</h3>
               </div>
-              <p class="meta">IELTS Official · Issued Jan 2023 · Expired Jan 2025</p>
+              <p class="meta" data-i18n="cert.ielts.meta">IELTS Official · Issued Jan 2023 · Expired Jan 2025</p>
             </article>
             <article class="timeline-detail-item">
               <div class="cert-head">
                 <img class="cert-logo" src="assets/logos/toefl%20logo.jpg" alt="TOEFL logo" loading="lazy" />
                 <h3>TOEFL iBT</h3>
               </div>
-              <p class="meta">TOEFL · Issued Jun 2025</p>
+              <p class="meta" data-i18n="cert.toefl.meta">TOEFL · Issued Jun 2025</p>
             </article>
           </div>
         </div>
@@ -496,72 +507,72 @@
     <section class="section reveal fold-section">
       <details>
         <summary class="fold-summary">
-          <span class="section-kicker">Community</span>
-          <span class="fold-title">Volunteering Experience</span>
+          <span class="section-kicker" data-i18n="community.kicker">Community</span>
+          <span class="fold-title" data-i18n="community.title">Volunteering Experience</span>
           <span class="fold-hint"></span>
         </summary>
         <div class="fold-content">
           <div class="timeline-detail">
             <article class="timeline-detail-item">
-              <h3>Vice President of the BDE - EPITECH Marseille</h3>
-              <p class="meta">EPITECH - European Institute of Technology · May 2025 - Mar 2026 (11 months) · Education</p>
+              <h3 data-i18n="community.bde.title">Vice President of the BDE - EPITECH Marseille</h3>
+              <p class="meta" data-i18n="community.bde.meta">EPITECH - European Institute of Technology · May 2025 - Mar 2026 (11 months) · Education</p>
               <ul class="detail-list">
-                <li>Organized student events (parties, integrations, LAN events) to strengthen campus cohesion.</li>
-                <li>Managed the BDE office, led weekly meetings, and coordinated with administration.</li>
-                <li>Planned annual priorities, budget tracking, and local partnerships.</li>
-                <li>Managed social media communication and visual content for student life updates.</li>
+                <li data-i18n="community.bde.detail1">Organized student events (parties, integrations, LAN events) to strengthen campus cohesion.</li>
+                <li data-i18n="community.bde.detail2">Managed the BDE office, led weekly meetings, and coordinated with administration.</li>
+                <li data-i18n="community.bde.detail3">Planned annual priorities, budget tracking, and local partnerships.</li>
+                <li data-i18n="community.bde.detail4">Managed social media communication and visual content for student life updates.</li>
               </ul>
               <ul class="impact-list">
-                <li>Higher participation in BDE events over the year.</li>
-                <li>Established local company partnerships to support activities.</li>
-                <li>Improved internal and external communication for the BDE.</li>
+                <li data-i18n="community.bde.impact1">Higher participation in BDE events over the year.</li>
+                <li data-i18n="community.bde.impact2">Established local company partnerships to support activities.</li>
+                <li data-i18n="community.bde.impact3">Improved internal and external communication for the BDE.</li>
               </ul>
             </article>
 
             <article class="timeline-detail-item">
-              <h3>Cobra Keeper</h3>
-              <p class="meta">EPITECH - European Institute of Technology · Jan 2025 - Present · Education</p>
+              <h3 data-i18n="community.cobra.title">Cobra Keeper</h3>
+              <p class="meta" data-i18n="community.cobra.meta">EPITECH - European Institute of Technology · Jan 2025 - Present · Education</p>
               <ul class="detail-list">
-                <li>Led the Coding Club and Camp through workshops, programming challenges, and events.</li>
-                <li>Coordinated the Cobras team and supported group motivation and execution.</li>
-                <li>Organized open-day activities for prospective students and families.</li>
+                <li data-i18n="community.cobra.detail1">Led the Coding Club and Camp through workshops, programming challenges, and events.</li>
+                <li data-i18n="community.cobra.detail2">Coordinated the Cobras team and supported group motivation and execution.</li>
+                <li data-i18n="community.cobra.detail3">Organized open-day activities for prospective students and families.</li>
               </ul>
               <ul class="impact-list">
-                <li>Increased participation in Coding Club and Camp activities.</li>
-                <li>Reinforced team engagement and group dynamics.</li>
+                <li data-i18n="community.cobra.impact1">Increased participation in Coding Club and Camp activities.</li>
+                <li data-i18n="community.cobra.impact2">Reinforced team engagement and group dynamics.</li>
               </ul>
             </article>
 
             <article class="timeline-detail-item">
-              <h3>Volunteer - Planete Perles (Les Perles de la Cote Bleue)</h3>
-              <p class="meta">Sep 2018 - Present · Environment</p>
+              <h3 data-i18n="community.planete.title">Volunteer - Planete Perles (Les Perles de la Cote Bleue)</h3>
+              <p class="meta" data-i18n="community.planete.meta">Sep 2018 - Present · Environment</p>
               <ul class="detail-list">
-                <li>Participated in recurring beach and natural-area cleanup operations.</li>
-                <li>Guided children groups and raised awareness on environmental issues.</li>
+                <li data-i18n="community.planete.detail1">Participated in recurring beach and natural-area cleanup operations.</li>
+                <li data-i18n="community.planete.detail2">Guided children groups and raised awareness on environmental issues.</li>
               </ul>
               <ul class="impact-list">
-                <li>Contributed directly to preserving natural spaces along the Cote Bleue.</li>
-                <li>Helped educate dozens of children on environmental respect.</li>
-                <li>Strengthened links between local community actions and ecology efforts.</li>
+                <li data-i18n="community.planete.impact1">Contributed directly to preserving natural spaces along the Cote Bleue.</li>
+                <li data-i18n="community.planete.impact2">Helped educate dozens of children on environmental respect.</li>
+                <li data-i18n="community.planete.impact3">Strengthened links between local community actions and ecology efforts.</li>
               </ul>
-              <p class="meta">Supporting activity: Beach cleanup collaboration with Bootcamp Cote Bleue</p>
+              <p class="meta" data-i18n="community.planete.support">Supporting activity: Beach cleanup collaboration with Bootcamp Cote Bleue</p>
             </article>
 
             <article class="timeline-detail-item">
-              <h3>Volunteer - Bootcamp Cote Bleue</h3>
-              <p class="meta">Sep 2018 - Present · Health</p>
+              <h3 data-i18n="community.bootcamp.title">Volunteer - Bootcamp Cote Bleue</h3>
+              <p class="meta" data-i18n="community.bootcamp.meta">Sep 2018 - Present · Health</p>
               <ul class="detail-list">
-                <li>Moderated and edited YouTube videos to promote bootcamp sessions.</li>
-                <li>Managed community communication across social platforms.</li>
-                <li>Developed a modern website to improve online visibility.</li>
-                <li>Participated in bootcamp sessions to support members and engagement.</li>
+                <li data-i18n="community.bootcamp.detail1">Moderated and edited YouTube videos to promote bootcamp sessions.</li>
+                <li data-i18n="community.bootcamp.detail2">Managed community communication across social platforms.</li>
+                <li data-i18n="community.bootcamp.detail3">Developed a modern website to improve online visibility.</li>
+                <li data-i18n="community.bootcamp.detail4">Participated in bootcamp sessions to support members and engagement.</li>
               </ul>
               <ul class="impact-list">
-                <li>Increased digital visibility and participant growth.</li>
-                <li>Built a stronger and more active social community.</li>
-                <li>Improved group cohesion during sessions through active support.</li>
+                <li data-i18n="community.bootcamp.impact1">Increased digital visibility and participant growth.</li>
+                <li data-i18n="community.bootcamp.impact2">Built a stronger and more active social community.</li>
+                <li data-i18n="community.bootcamp.impact3">Improved group cohesion during sessions through active support.</li>
               </ul>
-              <p class="meta">Supporting activity: Bootcamp Cote Bleue session highlights</p>
+              <p class="meta" data-i18n="community.bootcamp.support">Supporting activity: Bootcamp Cote Bleue session highlights</p>
             </article>
           </div>
         </div>
@@ -571,47 +582,47 @@
     <section class="section reveal fold-section">
       <details>
         <summary class="fold-summary">
-          <span class="section-kicker">Projects</span>
-          <span class="fold-title">Additional Initiatives</span>
+          <span class="section-kicker" data-i18n="projects.kicker.profile">Projects</span>
+          <span class="fold-title" data-i18n="projects.title.profile">Additional Initiatives</span>
           <span class="fold-hint"></span>
         </summary>
         <div class="fold-content">
           <div class="timeline-detail">
             <article class="timeline-detail-item">
-              <h3>JEB Incubator - Survivor Seminar EPITECH</h3>
-              <p class="meta">Sep 2025 · Associated with EPITECH - European Institute of Technology</p>
-              <p class="muted">Delivered in 21 days a web platform designed to showcase incubator projects and facilitate connections between startups, investors, and partners.</p>
+              <h3 data-i18n="projects.jeb.title">JEB Incubator - Survivor Seminar EPITECH</h3>
+              <p class="meta" data-i18n="projects.jeb.meta">Sep 2025 · Associated with EPITECH - European Institute of Technology</p>
+              <p class="muted" data-i18n="projects.jeb.body">Delivered in 21 days a web platform designed to showcase incubator projects and facilitate connections between startups, investors, and partners.</p>
               <ul class="detail-list">
-                <li>Built project catalog pages, startup spaces, internal messaging, news, and event calendar features.</li>
-                <li>Implemented a full backend with CRUD operations and synchronized database integration with an existing API.</li>
-                <li>Developed a responsive, accessibility-focused frontend and an admin back-office for content, user, and statistics management.</li>
-                <li>Worked in agile mode with continuous client feedback and evolving requirements on features, priorities, and design.</li>
+                <li data-i18n="projects.jeb.detail1">Built project catalog pages, startup spaces, internal messaging, news, and event calendar features.</li>
+                <li data-i18n="projects.jeb.detail2">Implemented a full backend with CRUD operations and synchronized database integration with an existing API.</li>
+                <li data-i18n="projects.jeb.detail3">Developed a responsive, accessibility-focused frontend and an admin back-office for content, user, and statistics management.</li>
+                <li data-i18n="projects.jeb.detail4">Worked in agile mode with continuous client feedback and evolving requirements on features, priorities, and design.</li>
               </ul>
               <ul class="impact-list">
-                <li>Grade A for the project delivery.</li>
-                <li>Functional solution delivered within a short timeline.</li>
-                <li>Strengthened fullstack, UX/UI, client management, and agile collaboration skills.</li>
+                <li data-i18n="projects.jeb.impact1">Grade A for the project delivery.</li>
+                <li data-i18n="projects.jeb.impact2">Functional solution delivered within a short timeline.</li>
+                <li data-i18n="projects.jeb.impact3">Strengthened fullstack, UX/UI, client management, and agile collaboration skills.</li>
               </ul>
-              <p class="meta">Tech stack: Vite, Vue.js, Django, Python, Docker, GitHub Actions</p>
-              <p class="meta">Supporting material: Project presentation, main website page</p>
+              <p class="meta" data-i18n="projects.jeb.stack">Tech stack: Vite, Vue.js, Django, Python, Docker, GitHub Actions</p>
+              <p class="meta" data-i18n="projects.jeb.support">Supporting material: Project presentation, main website page</p>
             </article>
 
             <article class="timeline-detail-item">
-              <h3>Hackathon KEDGE Business School x EPITECH</h3>
-              <p class="meta">Mar 2025 - Apr 2025 · Associated with EPITECH - European Institute of Technology</p>
-              <p class="muted">Contributed to solving a real business challenge for Biotech One by combining technical perspective with market and strategic analysis.</p>
+              <h3 data-i18n="projects.hackathon.title">Hackathon KEDGE Business School x EPITECH</h3>
+              <p class="meta" data-i18n="projects.hackathon.meta">Mar 2025 - Apr 2025 · Associated with EPITECH - European Institute of Technology</p>
+              <p class="muted" data-i18n="projects.hackathon.body">Contributed to solving a real business challenge for Biotech One by combining technical perspective with market and strategic analysis.</p>
               <ul class="detail-list">
-                <li>Analyzed ingredient profitability to recommend the strongest economic option.</li>
-                <li>Performed market research and competitive analysis to identify trends, opportunities, and customer needs.</li>
-                <li>Collected Voice of Customer insights through interviews and field feedback.</li>
-                <li>Built a full business model including SWOT, value proposition, target markets, and cost estimations.</li>
+                <li data-i18n="projects.hackathon.detail1">Analyzed ingredient profitability to recommend the strongest economic option.</li>
+                <li data-i18n="projects.hackathon.detail2">Performed market research and competitive analysis to identify trends, opportunities, and customer needs.</li>
+                <li data-i18n="projects.hackathon.detail3">Collected Voice of Customer insights through interviews and field feedback.</li>
+                <li data-i18n="projects.hackathon.detail4">Built a full business model including SWOT, value proposition, target markets, and cost estimations.</li>
               </ul>
               <ul class="impact-list">
-                <li>Delivered a complete strategic report to Biotech One at the end of the hackathon.</li>
-                <li>Developed stronger business analysis, marketing, and cross-school collaboration skills.</li>
-                <li>Gained practical experience solving a real enterprise problem.</li>
+                <li data-i18n="projects.hackathon.impact1">Delivered a complete strategic report to Biotech One at the end of the hackathon.</li>
+                <li data-i18n="projects.hackathon.impact2">Developed stronger business analysis, marketing, and cross-school collaboration skills.</li>
+                <li data-i18n="projects.hackathon.impact3">Gained practical experience solving a real enterprise problem.</li>
               </ul>
-              <p class="meta">Supporting material: Final presentation with KEDGE team (Biotech One hackathon)</p>
+              <p class="meta" data-i18n="projects.hackathon.support">Supporting material: Final presentation with KEDGE team (Biotech One hackathon)</p>
             </article>
           </div>
         </div>
@@ -620,33 +631,33 @@
 
     <section class="section reveal">
       <div class="section-title-wrap">
-        <p class="section-kicker">Core Strengths</p>
-        <h2>Skills Snapshot</h2>
+        <p class="section-kicker" data-i18n="skills.kicker">Core Strengths</p>
+        <h2 data-i18n="skills.title">Skills Snapshot</h2>
       </div>
       <div class="detail-grid">
         <article class="section-block">
-          <h3>Technical</h3>
+          <h3 data-i18n="skills.technical">Technical</h3>
           <ul class="list-clean">
-            <li>Java, SQL, Python</li>
-            <li>Web: HTML, CSS, JavaScript</li>
-            <li>Git workflow and code quality tools</li>
+            <li data-i18n="skills.technical.item1">Java, SQL, Python</li>
+            <li data-i18n="skills.technical.item2">Web: HTML, CSS, JavaScript</li>
+            <li data-i18n="skills.technical.item3">Git workflow and code quality tools</li>
           </ul>
         </article>
         <article class="section-block">
-          <h3>Professional</h3>
+          <h3 data-i18n="skills.professional">Professional</h3>
           <ul class="list-clean">
-            <li>Agile teamwork and sprint delivery</li>
-            <li>Cross-functional communication</li>
-            <li>Process optimization and automation</li>
+            <li data-i18n="skills.professional.item1">Agile teamwork and sprint delivery</li>
+            <li data-i18n="skills.professional.item2">Cross-functional communication</li>
+            <li data-i18n="skills.professional.item3">Process optimization and automation</li>
           </ul>
         </article>
         <article class="section-block">
-          <h3>Languages</h3>
+          <h3 data-i18n="skills.languages">Languages</h3>
           <ul class="list-clean">
-            <li>English (bilingual)</li>
-            <li>French (bilingual)</li>
-            <li>Spanish (limited working proficiency)</li>
-            <li>Chinese (elementary proficiency)</li>
+            <li data-i18n="skills.languages.item1">English (bilingual)</li>
+            <li data-i18n="skills.languages.item2">French (bilingual)</li>
+            <li data-i18n="skills.languages.item3">Spanish (limited working proficiency)</li>
+            <li data-i18n="skills.languages.item4">Chinese (elementary proficiency)</li>
           </ul>
         </article>
       </div>
@@ -654,7 +665,7 @@
   </main>
 
   <footer class="section footer">
-    <p><span id="year"></span> Arnaud Jouan. Detailed profile page.</p>
+    <p data-i18n-html="footer.profile"><span id="year"></span> Arnaud Jouan. Detailed profile page.</p>
   </footer>
 
   <script src="script.js"></script>

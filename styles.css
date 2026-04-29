@@ -78,6 +78,28 @@ a {
   color: var(--muted);
 }
 
+.lang-toggle {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.lang-btn {
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-btn.is-active {
+  color: var(--text);
+  border-color: rgba(24, 160, 251, 0.6);
+  box-shadow: 0 0 0 1px rgba(24, 160, 251, 0.3);
+}
+
 .nav-links a:hover {
   color: var(--text);
 }

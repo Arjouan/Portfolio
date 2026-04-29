@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Arnaud Jouan portfolio - software engineering projects, internships, and contact." />
-  <title>Arnaud Jouan | Portfolio</title>
+  <meta name="description" content="Arnaud Jouan portfolio - software engineering projects, internships, and contact." data-i18n="meta.description.portfolio" data-i18n-attr="content" />
+  <title data-i18n="meta.title.portfolio">Arnaud Jouan | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -18,25 +18,29 @@
     <nav class="nav">
       <a href="#top" class="brand">AJ</a>
       <div class="nav-links">
-        <a href="profile.html">Detailed Profile</a>
-        <a href="#profile">Profile</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+        <a href="profile.html" data-i18n="nav.detailedProfile">Detailed Profile</a>
+        <a href="#profile" data-i18n="nav.profile">Profile</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="lang-toggle" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="fr">FR</button>
       </div>
     </nav>
 
     <section id="top" class="hero reveal">
-      <p class="eyebrow">Computer Science Engineer Student</p>
+      <p class="eyebrow" data-i18n="hero.eyebrow">Computer Science Engineer Student</p>
       <h1>Arnaud Jouan</h1>
-      <p class="hero-text">
+      <p class="hero-text" data-i18n="hero.subtitle">
         I build practical software with Java and web technologies, focused on reliable delivery,
         maintainable code, and real business impact.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-secondary" href="profile.html">Read Full Profile</a>
-        <a class="btn btn-primary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer">GitHub</a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn btn-secondary" href="profile.html" data-i18n="hero.ctaProfile">Read Full Profile</a>
+        <a class="btn btn-primary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer" data-i18n="hero.ctaGithub">GitHub</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer" data-i18n="hero.ctaLinkedin">LinkedIn</a>
       </div>
     </section>
   </header>
@@ -44,50 +48,54 @@
   <main>
     <section id="profile" class="section reveal">
       <div class="section-title-wrap">
-        <p class="section-kicker">Who I Am</p>
-        <h2>Profile</h2>
+        <p class="section-kicker" data-i18n="profile.kicker">Who I Am</p>
+        <h2 data-i18n="profile.title">Profile</h2>
       </div>
       <div class="profile-grid">
         <article class="profile-panel">
-          <h3>About Me</h3>
-          <p>
-            I was born in Singapore, and I am bilingual in English and French. I am currently in my 3rd year at
-            EPITECH and aiming for a management role that combines commerce and IT to deliver strong business and
-            technology outcomes.
+          <h3 data-i18n="about.title">About Me</h3>
+          <p data-i18n="about.body">
+            I am targeting roles that combine management, technology, and commercial impact. My objective is to lead
+            projects where business strategy, client value, and software execution are perfectly aligned. Having lived
+            across four continents, I bring a highly adaptable, cross-cultural mindset to my work. My experience bridges
+            both sides of the tech-business equation: I build secure, scalable solutions as a Software Engineer
+            (currently at REACTIS Group), while also driving B2B sales, managing cross-functional teams, and building
+            regional strategies as a Business Manager. Ultimately, I am passionate about bridging the gap between
+            complex IT capabilities and tangible commercial growth.
           </p>
         </article>
 
         <article class="profile-panel">
-          <h3>Work Experience</h3>
+          <h3 data-i18n="work.title">Work Experience</h3>
           <ul class="profile-list">
-            <li><strong>REACTIS Group</strong> - Software Developer Intern (Mar 2026 - Present)</li>
-            <li><strong>BARJANE</strong> - Internal IT Referent Intern (Sep 2025 - Feb 2026)</li>
-            <li><strong>CPAM</strong> - Java Developer Intern (Sep 2024 - Dec 2024)</li>
+            <li data-i18n-html="work.item1"><strong>REACTIS Group</strong> - Software Developer Intern (Mar 2026 - Present)</li>
+            <li data-i18n-html="work.item2"><strong>BARJANE</strong> - Internal IT Referent Intern (Sep 2025 - Feb 2026)</li>
+            <li data-i18n-html="work.item3"><strong>CPAM</strong> - Java Developer Intern (Sep 2024 - Dec 2024)</li>
           </ul>
         </article>
 
         <article class="profile-panel profile-cert-panel">
-          <h3>Certificates</h3>
+          <h3 data-i18n="cert.title">Certificates</h3>
           <ul class="profile-list profile-cert-list">
             <li>
               <img class="profile-cert-logo" src="assets/logos/epitech%20logo.png" alt="EPITECH logo" loading="lazy" />
-              <span><strong>EPITECH</strong> - Diplome d'Etablissement, Expert en Technologies de l'information (Bac +5) - Expected 2028</span>
+              <span data-i18n-html="cert.item1"><strong>EPITECH</strong> - Institutional Degree in Information Technology (Bac +5) - Expected 2028</span>
             </li>
             <li>
               <img class="profile-cert-logo" src="assets/logos/mcgill%20logo.png" alt="McGill University logo" loading="lazy" />
-              <span><strong>MCGILL UNIVERSITY</strong> - Certificate in Management (Bachelor Degree) - Expected 2027</span>
+              <span data-i18n-html="cert.item2"><strong>MCGILL UNIVERSITY</strong> - Certificate in Management (Bachelor Degree) - Expected 2027</span>
             </li>
             <li>
               <img class="profile-cert-logo" src="assets/logos/HEC%20logo.png" alt="HEC logo" loading="lazy" />
-              <span><strong>HEC</strong> - AI Entrepreneurship Certificate - In progress</span>
+              <span data-i18n-html="cert.item3"><strong>HEC</strong> - AI Entrepreneurship Certificate - In progress</span>
             </li>
             <li>
               <img class="profile-cert-logo" src="assets/logos/mantu%20logo.png" alt="Mantu logo" loading="lazy" />
-              <span><strong>MANTU</strong> - The Mantu Manager Program (Business Acquisition) - Issued Nov 2025</span>
+              <span data-i18n-html="cert.item4"><strong>MANTU</strong> - The Mantu Manager Program (Business Acquisition) - Issued Nov 2025</span>
             </li>
             <li>
               <img class="profile-cert-logo" src="assets/logos/oxford%20royal.jpg" alt="Oxford Royale logo" loading="lazy" />
-              <span><strong>OXFORD ROYALE ACADEMY</strong> - Academy certificate - Issued Jul 2022</span>
+              <span data-i18n-html="cert.item5"><strong>OXFORD ROYALE ACADEMY</strong> - Academy certificate - Issued Jul 2022</span>
             </li>
           </ul>
         </article>
@@ -96,37 +104,37 @@
 
     <section id="projects" class="section reveal">
       <div class="section-title-wrap">
-        <p class="section-kicker">Selected Work</p>
-        <h2>Featured Projects</h2>
+        <p class="section-kicker" data-i18n="projects.kicker">Selected Work</p>
+        <h2 data-i18n="projects.title">Featured Projects</h2>
       </div>
       <div class="project-grid">
         <article class="card">
-          <h3>EPITECH Year 1 Projects</h3>
-          <p>Foundational C projects focused on algorithms, Unix programming, and clean software structure.</p>
-          <p class="meta">Stack: C, Makefile, Linux</p>
+          <h3 data-i18n="project1.title">EPITECH Year 1 Projects</h3>
+          <p data-i18n="project1.body">Foundational C projects focused on algorithms, Unix programming, and clean software structure.</p>
+          <p class="meta" data-i18n="project1.stack">Stack: C, Makefile, Linux</p>
           <div class="card-links">
-            <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer">Project Details</a>
-            <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer">Repository</a>
+            <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer" data-i18n="project1.details">Project Details</a>
+            <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer" data-i18n="project1.repo">Repository</a>
           </div>
         </article>
 
         <article class="card">
-          <h3>EPITECH Year 2 Projects</h3>
-          <p>Intermediate projects covering software engineering practices, architecture, and application development.</p>
-          <p class="meta">Stack: C, C++, Networking, Systems</p>
+          <h3 data-i18n="project2.title">EPITECH Year 2 Projects</h3>
+          <p data-i18n="project2.body">Intermediate projects covering software engineering practices, architecture, and application development.</p>
+          <p class="meta" data-i18n="project2.stack">Stack: C, C++, Networking, Systems</p>
           <div class="card-links">
-            <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer">Project Details</a>
-            <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer">Repository</a>
+            <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer" data-i18n="project2.details">Project Details</a>
+            <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer" data-i18n="project2.repo">Repository</a>
           </div>
         </article>
 
         <article class="card">
-          <h3>EPITECH Year 3 Projects</h3>
-          <p>Advanced projects emphasizing scalable solutions, collaboration, and production-oriented delivery.</p>
-          <p class="meta">Stack: Java, Web, Cloud, DevOps</p>
+          <h3 data-i18n="project3.title">EPITECH Year 3 Projects</h3>
+          <p data-i18n="project3.body">Advanced projects emphasizing scalable solutions, collaboration, and production-oriented delivery.</p>
+          <p class="meta" data-i18n="project3.stack">Stack: Java, Web, Cloud, DevOps</p>
           <div class="card-links">
-            <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer">Project Details</a>
-            <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer">Repository</a>
+            <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer" data-i18n="project3.details">Project Details</a>
+            <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer" data-i18n="project3.repo">Repository</a>
           </div>
         </article>
       </div>
@@ -134,8 +142,8 @@
 
     <section id="experience" class="section reveal">
       <div class="section-title-wrap">
-        <p class="section-kicker">Professional Path</p>
-        <h2>Internship Highlights</h2>
+        <p class="section-kicker" data-i18n="experience.kicker">Professional Path</p>
+        <h2 data-i18n="experience.title">Internship Highlights</h2>
       </div>
       <div class="timeline">
         <article class="timeline-item">
@@ -143,9 +151,9 @@
             <img class="company-logo" src="assets/logos/logo_Reactis.svg" alt="REACTIS Group logo" loading="lazy" />
             <h3>REACTIS Group</h3>
           </div>
-          <p class="meta">Software Developer Intern | Mar 2026 - Present</p>
-          <p>Working as a developer on an aeronautical maintenance application, developing and maintaining Java features for production, writing clean and testable code, and supporting sprint delivery through code reviews and bug fixing.</p>
-          <p class="meta">Languages: Java, SQL, Neo4j, Python</p>
+          <p class="meta" data-i18n="exp1.meta">Software Developer Intern | Mar 2026 - Present</p>
+          <p data-i18n="exp1.body">Working as a developer on an aeronautical maintenance application, developing and maintaining Java features for production, writing clean and testable code, and supporting sprint delivery through code reviews and bug fixing.</p>
+          <p class="meta" data-i18n="exp1.tools">Languages: Java, SQL, Neo4j, Python</p>
         </article>
 
         <article class="timeline-item">
@@ -153,9 +161,9 @@
             <img class="company-logo" src="assets/logos/Logo-BARJANE.svg" alt="BARJANE logo" loading="lazy" />
             <h3>BARJANE</h3>
           </div>
-          <p class="meta">Internal IT Referent Intern | Sep 2025 - Feb 2026</p>
-          <p>Managed internal IT operations, improved infrastructure reliability, automated recurring support tasks, and contributed to website modernization projects to improve user experience and reduce manual interventions.</p>
-          <p class="meta">Languages & tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
+          <p class="meta" data-i18n="exp2.meta">Internal IT Referent Intern | Sep 2025 - Feb 2026</p>
+          <p data-i18n="exp2.body">Managed internal IT operations, improved infrastructure reliability, automated recurring support tasks, and contributed to website modernization projects to improve user experience and reduce manual interventions.</p>
+          <p class="meta" data-i18n="exp2.tools">Languages & tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
         </article>
 
         <article class="timeline-item">
@@ -163,29 +171,29 @@
             <img class="company-logo" src="assets/logos/logo_CPAM.svg" alt="CPAM logo" loading="lazy" />
             <h3>CPAM (Assurance Maladie)</h3>
           </div>
-          <p class="meta">Java Developer Intern | Sep 2024 - Dec 2024</p>
-          <p>Participated in migrating legacy Java components to a more maintainable architecture, improved code quality through refactoring and documentation, and helped stabilize the application with targeted fixes and validation testing.</p>
-          <p class="meta">Languages & Tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
+          <p class="meta" data-i18n="exp3.meta">Java Developer Intern | Sep 2024 - Dec 2024</p>
+          <p data-i18n="exp3.body">Participated in migrating legacy Java components to a more maintainable architecture, improved code quality through refactoring and documentation, and helped stabilize the application with targeted fixes and validation testing.</p>
+          <p class="meta" data-i18n="exp3.tools">Languages & Tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
         </article>
       </div>
     </section>
 
     <section id="contact" class="section reveal">
       <div class="contact-card">
-        <p class="section-kicker">Open To Opportunities</p>
-        <h2>Let us build something useful.</h2>
-        <p>I am currently looking for internships and engineering opportunities with international teams.</p>
+        <p class="section-kicker" data-i18n="contact.kicker">Open To Opportunities</p>
+        <h2 data-i18n="contact.title">Let us build something useful.</h2>
+        <p data-i18n="contact.body">I am currently looking for internships and engineering opportunities with international teams.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:arnaud.jouan@epitech.eu">Email Me</a>
-          <a class="btn btn-secondary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer">View GitHub</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn btn-primary" href="mailto:arnaud.jouan@epitech.eu" data-i18n="contact.email">Email Me</a>
+          <a class="btn btn-secondary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer" data-i18n="contact.github">View GitHub</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer" data-i18n="contact.linkedin">LinkedIn</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="section footer">
-    <p><span id="year"></span> Arnaud Jouan. Built with HTML, CSS, and JavaScript.</p>
+    <p data-i18n-html="footer.text"><span id="year"></span> Arnaud Jouan. Built with HTML, CSS, and JavaScript.</p>
   </footer>
 
   <script src="script.js"></script>
