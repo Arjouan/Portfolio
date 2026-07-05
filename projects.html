@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061421" />
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      if (localStorage.getItem("introSeen")) {
+        document.documentElement.classList.add("intro-seen");
+      }
+      var theme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {}
+  </script>
+  <meta name="description" content="A detailed look at Arnaud Jouan's EPITECH projects across all three years." data-i18n="meta.description.projects" data-i18n-attr="content" />
+  <title data-i18n="meta.title.projects">Arnaud Jouan | Projects</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="canonical" href="https://arjouan.github.io/Portfolio/projects.html" />
+
+  <!-- Social preview (Open Graph + Twitter). -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arjouan.github.io/Portfolio/projects.html" />
+  <meta property="og:title" content="Arnaud Jouan | Projects" />
+  <meta property="og:description" content="A detailed look at Arnaud Jouan's EPITECH projects across all three years." />
+  <meta property="og:image" content="https://arjouan.github.io/Portfolio/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arnaud Jouan | Projects" />
+  <meta name="twitter:description" content="A detailed look at Arnaud Jouan's EPITECH projects across all three years." />
+  <meta name="twitter:image" content="https://arjouan.github.io/Portfolio/assets/og-image.png" />
+
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .section-block {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      padding: 1.2rem;
+    }
+
+    .section-block h3 {
+      margin-top: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .detail-list {
+      margin: 0.7rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .section-block .card-links {
+      margin-top: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader-badge">AJ</div>
+  </div>
+
+  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-3" aria-hidden="true"></div>
+
+  <header class="site-header section">
+    <nav class="nav">
+      <a href="index.html" class="brand">AJ</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-links" id="primary-nav">
+        <a href="profile.html" data-i18n="nav.detailedProfile">Detailed Profile</a>
+        <a href="index.html#profile" data-i18n="nav.profile">Profile</a>
+        <a href="index.html#experience" data-i18n="nav.experience">Experience</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+        <button class="lang-btn" type="button" data-lang="fr" aria-pressed="false" aria-label="Francais">FR</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow" data-i18n="projectsPage.kicker">Selected Work</p>
+      <h1 data-i18n="projectsPage.title">Project Details</h1>
+      <p class="hero-text" data-i18n="projectsPage.intro">A closer look at the projects I built during each year at EPITECH — the goals, the tech, and what I took away from them.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+          <span data-i18n="profile.ctaBack">Back to Portfolio</span>
+        </a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="year1" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker" data-i18n="projectsPage.kicker">Selected Work</p>
+        <h2 data-i18n="project1.title">EPITECH Year 1 Projects</h2>
+      </div>
+      <article class="section-block">
+        <p class="muted" data-i18n="project1.body">Foundational C projects focused on algorithms, Unix programming, and clean software structure.</p>
+        <p class="meta tech-chips" data-i18n="project1.stack">Stack: C, Makefile, Linux</p>
+
+        <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
+        <p class="muted" data-i18n="projectsPage.placeholder">These projects haven't been uploaded yet — detailed write-ups are coming soon. In the meantime, the code is available in the repository below.</p>
+
+        <div class="card-links">
+          <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="year2" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker" data-i18n="projectsPage.kicker">Selected Work</p>
+        <h2 data-i18n="project2.title">EPITECH Year 2 Projects</h2>
+      </div>
+      <article class="section-block">
+        <p class="muted" data-i18n="project2.body">Intermediate projects covering software engineering practices, architecture, and application development.</p>
+        <p class="meta tech-chips" data-i18n="project2.stack">Stack: C, C++, Networking, Systems</p>
+
+        <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
+        <p class="muted" data-i18n="projectsPage.placeholder">These projects haven't been uploaded yet — detailed write-ups are coming soon. In the meantime, the code is available in the repository below.</p>
+
+        <div class="card-links">
+          <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="year3" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker" data-i18n="projectsPage.kicker">Selected Work</p>
+        <h2 data-i18n="project3.title">EPITECH Year 3 Projects</h2>
+      </div>
+      <article class="section-block">
+        <p class="muted" data-i18n="project3.body">Advanced projects emphasizing scalable solutions, collaboration, and production-oriented delivery.</p>
+        <p class="meta tech-chips" data-i18n="project3.stack">Stack: Java, Web, Cloud, DevOps</p>
+
+        <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
+        <p class="muted" data-i18n="projectsPage.placeholder">These projects haven't been uploaded yet — detailed write-ups are coming soon. In the meantime, the code is available in the repository below.</p>
+
+        <div class="card-links">
+          <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="github" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker" data-i18n="githubPage.kicker">GitHub</p>
+        <h2 data-i18n="githubPage.title">Latest on GitHub</h2>
+      </div>
+      <div id="github-repos" class="project-grid">
+        <p class="muted" data-i18n="githubPage.loading">Loading repositories…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section footer">
+    <p data-i18n-html="footer.projects"><span id="year"></span> Arnaud Jouan. Projects page.</p>
+  </footer>
+
+  <script defer src="script.js"></script>
+
+  <!-- Privacy-friendly analytics (GoatCounter). Dashboard: https://arjouan.goatcounter.com -->
+  <script data-goatcounter="https://arjouan.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Jouan;Arnaud;;;
+FN:Arnaud Jouan
+TITLE:Software Engineer
+EMAIL;TYPE=INTERNET,PREF:arnaud.jouan@epitech.eu
+URL:https://arjouan.github.io/Portfolio/
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/arnaud-jouan-613a53263
+URL;TYPE=GitHub:https://github.com/Arjouan
+END:VCARD

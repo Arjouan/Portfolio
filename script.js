@@ -1,3 +1,65 @@
+/**
+ * script.js — all client-side behaviour for the portfolio.
+ * Shared by index.html, profile.html, and projects.html (loaded with `defer`).
+ *
+ * Sections, in order:
+ *   1. Loading overlay        — first-visit branded splash
+ *   2. Translations (EN / FR) — the `translations` dictionary + tr() helper
+ *   3. i18n engine            — applyTranslations(), tech chips, year, language toggle
+ *   4. Navigation             — mobile menu toggle, reveal-on-scroll, scroll-spy
+ *   5. Earth globe            — canvas renderer (profile.html only)
+ *   6. Enhancements           — scroll progress bar, theme toggle, live GitHub feed,
+ *                               contact form, copy-email, service-worker (PWA)
+ */
+
+// Branded loading overlay: shown only on a visitor's first arrival, then
+// remembered so it never appears again (including on internal navigation).
+(function hidePageLoader() {
+  const loader = document.querySelector(".page-loader");
+  if (!loader) {
+    return;
+  }
+  // Returning visitor: the overlay was never displayed (CSS .intro-seen gate).
+  if (document.documentElement.classList.contains("intro-seen")) {
+    return;
+  }
+  // First visit: remember it for next time.
+  try {
+    localStorage.setItem("introSeen", "1");
+  } catch (e) {}
+
+  // Start the intro at the top of the page (unless a deep link with #anchor
+  // was used). Prevents the browser from restoring a mid-page scroll behind
+  // the splash on reload.
+  if (!window.location.hash) {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }
+
+  const MIN_SHOW = 600; // keep the splash on screen for at least 0.6s
+  let done = false;
+  const hide = () => {
+    if (done) {
+      return;
+    }
+    done = true;
+    loader.classList.add("is-hidden");
+  };
+  const hideAfterMinimum = () => {
+    const remaining = Math.max(0, MIN_SHOW - performance.now());
+    window.setTimeout(hide, remaining);
+  };
+
+  if (document.readyState === "complete") {
+    hideAfterMinimum();
+  } else {
+    window.addEventListener("load", hideAfterMinimum);
+    window.setTimeout(hide, 4000); // absolute safety cap
+  }
+})();
+
 const LANGUAGE_KEY = "siteLang";
 
 const translations = {
@@ -27,7 +89,7 @@ const translations = {
     "cert.title": "Certificates",
     "cert.item1": "<strong>EPITECH</strong> - Institutional Degree in Information Technology (Bac +5) - Expected 2028",
     "cert.item2": "<strong>MCGILL UNIVERSITY</strong> - Certificate in Management (Bachelor Degree) - Expected 2027",
-    "cert.item3": "<strong>HEC</strong> - AI Entrepreneurship Certificate - In progress",
+    "cert.item3": "<strong>HEC</strong> - AI Entrepreneurship Certificate - Issued 2026",
     "cert.item4": "<strong>MANTU</strong> - The Mantu Manager Program (Business Acquisition) - Issued Nov 2025",
     "cert.item5": "<strong>OXFORD ROYALE ACADEMY</strong> - Academy certificate - Issued Jul 2022",
     "projects.kicker": "Selected Work",
@@ -87,7 +149,7 @@ const translations = {
     "education.mcgill.expected": "Expected in 2027",
     "education.hec.location": "Paris, France",
     "education.hec.program": "AI Entrepreneurship Certificate",
-    "education.hec.status": "In progress",
+    "education.hec.status": "Obtained in 2026",
     "education.earlier": "Earlier Education",
     "experience.reactis.body": "Working on an aeronautical maintenance application, developing production Java features, and contributing to code quality and sprint delivery with the engineering team.",
     "experience.reactis.tools": "Languages: Java, SQL, Neo4j, Python",
@@ -176,184 +238,238 @@ const translations = {
     "skills.kicker": "Core Strengths",
     "skills.title": "Skills Snapshot",
     "footer.profile": "<span id=\"year\"></span> Arnaud Jouan. Detailed profile page.",
+    "meta.title.projects": "Arnaud Jouan | Projects",
+    "meta.description.projects": "A detailed look at Arnaud Jouan's EPITECH projects across all three years.",
+    "projectsPage.kicker": "Selected Work",
+    "projectsPage.title": "Project Details",
+    "projectsPage.intro": "A closer look at the projects I built during each year at EPITECH — the goals, the tech, and what I took away from them.",
+    "projectsPage.whatIBuilt": "What I built",
+    "projectsPage.outcome": "Outcome & skills",
+    "projectsPage.viewRepo": "View Repository",
+    "projectsPage.placeholder": "These projects haven't been uploaded yet — detailed write-ups are coming soon. In the meantime, the code is available in the repository below.",
+    "footer.projects": "<span id=\"year\"></span> Arnaud Jouan. Projects page.",
+    "githubPage.kicker": "GitHub",
+    "githubPage.title": "Latest on GitHub",
+    "githubPage.loading": "Loading repositories…",
+    "contact.formTitle": "Or send a message directly",
+    "contact.copyEmail": "Copy email",
+    "contact.copied": "Copied!",
+    "contact.vcard": "Save contact",
+    "form.name": "Name",
+    "form.email": "Email",
+    "form.message": "Message",
+    "form.send": "Send message",
+    "form.sending": "Sending…",
+    "form.success": "Thanks — your message has been sent!",
+    "form.error": "Something went wrong. Please email me directly.",
   },
   fr: {
-    "meta.description.portfolio": "Portfolio d'Arnaud Jouan - projets d'ingenierie logicielle, stages et contact.",
+    "meta.description.portfolio": "Portfolio d'Arnaud Jouan - projets d'ingénierie logicielle, stages et contact.",
     "meta.title.portfolio": "Arnaud Jouan | Portfolio",
-    "meta.description.profile": "Profil detaille d'Arnaud Jouan : formation, stages, certifications et objectifs.",
-    "meta.title.profile": "Arnaud Jouan | Profil detaille",
-    "nav.detailedProfile": "Profil detaille",
+    "meta.description.profile": "Profil détaillé d'Arnaud Jouan : formation, stages, certifications et objectifs.",
+    "meta.title.profile": "Arnaud Jouan | Profil détaillé",
+    "nav.detailedProfile": "Profil détaillé",
     "nav.profile": "Profil",
     "nav.projects": "Projets",
-    "nav.experience": "Experience",
+    "nav.experience": "Expérience",
     "nav.contact": "Contact",
-    "hero.eyebrow": "Etudiant ingenieur en informatique",
-    "hero.subtitle": "Je construis des logiciels pratiques avec Java et les technologies web, axes sur la fiabilite, la maintenabilite et l'impact business.",
+    "hero.eyebrow": "Étudiant ingénieur en informatique",
+    "hero.subtitle": "Né à Singapour, bilingue anglais et français, et actuellement en 3e année à EPITECH. Je construis ma carrière à l'intersection du management, du commerce et des technologies de l'information.",
     "hero.ctaProfile": "Voir le profil complet",
     "hero.ctaGithub": "GitHub",
     "hero.ctaLinkedin": "LinkedIn",
     "profile.kicker": "Qui je suis",
     "profile.title": "Profil",
-    "about.title": "A propos de moi",
-    "about.body": "Je vise des roles qui combinent management, technologie et impact commercial. Mon objectif est de diriger des projets ou strategie, valeur client et execution logicielle sont parfaitement alignees. Ayant vecu sur quatre continents, j'apporte un esprit tres adaptable et interculturel. Mon experience relie les deux faces du tech-business : je construis des solutions securisees et scalables comme Software Engineer (actuellement chez REACTIS Group), tout en developpant le B2B, en gerant des equipes transverses et en construisant des strategies regionales en tant que Business Manager. Au final, je suis passionne par le lien entre capacites IT complexes et croissance commerciale tangible.",
-    "work.title": "Experience professionnelle",
-    "work.item1": "<strong>REACTIS Group</strong> - Stagiaire developpeur logiciel (mars 2026 - aujourd'hui)",
-    "work.item2": "<strong>BARJANE</strong> - Stagiaire referent IT interne (sept 2025 - fev 2026)",
-    "work.item3": "<strong>CPAM</strong> - Stagiaire developpeur Java (sept 2024 - dec 2024)",
+    "about.title": "À propos de moi",
+    "about.body": "Je vise des rôles qui combinent management, technologie et impact commercial. Mon objectif est de diriger des projets où stratégie, valeur client et exécution logicielle sont parfaitement alignées. Ayant vécu sur quatre continents, j'apporte un esprit très adaptable et interculturel. Mon expérience relie les deux faces du tech-business : je construis des solutions sécurisées et scalables comme Software Engineer (actuellement chez REACTIS Group), tout en développant le B2B, en gérant des équipes transverses et en construisant des stratégies régionales en tant que Business Manager. Au final, je suis passionné par le lien entre capacités IT complexes et croissance commerciale tangible.",
+    "work.title": "Expérience professionnelle",
+    "work.item1": "<strong>REACTIS Group</strong> - Stagiaire développeur logiciel (mars 2026 - aujourd'hui)",
+    "work.item2": "<strong>BARJANE</strong> - Stagiaire référent IT interne (sept 2025 - fév 2026)",
+    "work.item3": "<strong>CPAM</strong> - Stagiaire développeur Java (sept 2024 - déc 2024)",
     "cert.title": "Certificats",
-    "cert.item1": "<strong>EPITECH</strong> - Diplome d'etablissement en technologies de l'information (Bac +5) - Prevu 2028",
-    "cert.item2": "<strong>MCGILL UNIVERSITY</strong> - Certificat en management (Bachelor) - Prevu 2027",
-    "cert.item3": "<strong>HEC</strong> - Certificat d'entrepreneuriat IA - En cours",
-    "cert.item4": "<strong>MANTU</strong> - Programme Manager Mantu (Business Acquisition) - Delivre nov 2025",
-    "cert.item5": "<strong>OXFORD ROYALE ACADEMY</strong> - Certificat d'academie - Delivre juil 2022",
-    "projects.kicker": "Travaux selectionnes",
+    "cert.item1": "<strong>EPITECH</strong> - Diplôme d'établissement en technologies de l'information (Bac +5) - Prévu 2028",
+    "cert.item2": "<strong>MCGILL UNIVERSITY</strong> - Certificat en management (Bachelor) - Prévu 2027",
+    "cert.item3": "<strong>HEC</strong> - Certificat d'entrepreneuriat IA - Obtenu 2026",
+    "cert.item4": "<strong>MANTU</strong> - Programme Manager Mantu (Business Acquisition) - Délivré nov 2025",
+    "cert.item5": "<strong>OXFORD ROYALE ACADEMY</strong> - Certificat d'académie - Délivré juil 2022",
+    "projects.kicker": "Travaux sélectionnés",
     "projects.title": "Projets en vedette",
     "projects.kicker.profile": "Projets",
     "projects.title.profile": "Initiatives additionnelles",
-    "project1.title": "Projets EPITECH annee 1",
-    "project1.body": "Projets C fondamentaux axes sur les algorithmes, Unix et une structure logicielle propre.",
+    "project1.title": "Projets EPITECH année 1",
+    "project1.body": "Projets C fondamentaux axés sur les algorithmes, Unix et une structure logicielle propre.",
     "project1.stack": "Stack : C, Makefile, Linux",
-    "project1.details": "Details du projet",
-    "project1.repo": "Depot",
-    "project2.title": "Projets EPITECH annee 2",
-    "project2.body": "Projets intermediaires couvrant les pratiques d'ingenierie, l'architecture et le developpement d'applications.",
-    "project2.stack": "Stack : C, C++, Reseaux, Systemes",
-    "project2.details": "Details du projet",
-    "project2.repo": "Depot",
-    "project3.title": "Projets EPITECH annee 3",
-    "project3.body": "Projets avances mettant l'accent sur la scalabilite, la collaboration et la mise en production.",
+    "project1.details": "Détails du projet",
+    "project1.repo": "Dépôt",
+    "project2.title": "Projets EPITECH année 2",
+    "project2.body": "Projets intermédiaires couvrant les pratiques d'ingénierie, l'architecture et le développement d'applications.",
+    "project2.stack": "Stack : C, C++, Réseaux, Systèmes",
+    "project2.details": "Détails du projet",
+    "project2.repo": "Dépôt",
+    "project3.title": "Projets EPITECH année 3",
+    "project3.body": "Projets avancés mettant l'accent sur la scalabilité, la collaboration et la mise en production.",
     "project3.stack": "Stack : Java, Web, Cloud, DevOps",
-    "project3.details": "Details du projet",
-    "project3.repo": "Depot",
+    "project3.details": "Détails du projet",
+    "project3.repo": "Dépôt",
     "experience.kicker": "Parcours professionnel",
     "experience.title": "Temps forts des stages",
-    "experience.kicker.profile": "Experience",
-    "experience.title.profile": "Details des stages",
-    "exp1.meta": "Stagiaire developpeur logiciel | mars 2026 - aujourd'hui",
-    "exp1.body": "Developpement d'une application de maintenance aeronautique, creation de fonctionnalites Java en production et contribution a la qualite et aux sprints.",
+    "experience.kicker.profile": "Expérience",
+    "experience.title.profile": "Détails des stages",
+    "exp1.meta": "Stagiaire développeur logiciel | mars 2026 - aujourd'hui",
+    "exp1.body": "Développement d'une application de maintenance aéronautique, création de fonctionnalités Java en production et contribution à la qualité et aux sprints.",
     "exp1.tools": "Langages : Java, SQL, Neo4j, Python",
-    "exp2.meta": "Stagiaire referent IT interne | sept 2025 - fev 2026",
-    "exp2.body": "Gestion du support IT interne, amelioration de la fiabilite, automatisation des taches et soutien a la modernisation du site.",
+    "exp2.meta": "Stagiaire référent IT interne | sept 2025 - fév 2026",
+    "exp2.body": "Gestion du support IT interne, amélioration de la fiabilité, automatisation des tâches et soutien à la modernisation du site.",
     "exp2.tools": "Langages et outils : JavaScript, HTML, CSS, SQL, Excel, WordPress",
-    "exp3.meta": "Stagiaire developpeur Java | sept 2024 - dec 2024",
-    "exp3.body": "Migration de composants Java, refactorisation, documentation et stabilisation avec des correctifs cibles.",
+    "exp3.meta": "Stagiaire développeur Java | sept 2024 - déc 2024",
+    "exp3.body": "Migration de composants Java, refactorisation, documentation et stabilisation avec des correctifs ciblés.",
     "exp3.tools": "Langages et outils : Java, SQL, Python, Git, SonarQube, SoapUI",
-    "contact.kicker": "Ouvert aux opportunites",
+    "contact.kicker": "Ouvert aux opportunités",
     "contact.title": "Construisons quelque chose d'utile.",
-    "contact.body": "Je recherche actuellement des stages et des opportunites d'ingenierie avec des equipes internationales.",
-    "contact.email": "M'ecrire",
+    "contact.body": "Je recherche actuellement des stages et des opportunités d'ingénierie avec des équipes internationales.",
+    "contact.email": "M'écrire",
     "contact.github": "Voir GitHub",
     "contact.linkedin": "LinkedIn",
     "footer.text": "<span id=\"year\"></span> Arnaud Jouan. Construit avec HTML, CSS et JavaScript.",
-    "profile.eyebrow": "Profil detaille",
-    "profile.heroText": "<p><strong>Ce que je construis</strong></p><p>Je vise des roles qui combinent responsabilites de management, technologie et impact commercial. Mon objectif est de diriger des projets ou strategie, valeur client et execution logicielle sont parfaitement alignees.</p><p>Ne a Singapour avec la nationalite francaise, je suis un citoyen du monde. Ayant vecu sur quatre continents - a Singapour, au Vietnam, en Australie et en France - et avec des etudes a venir au Canada, je suis pleinement bilingue en anglais et en francais. Ce parcours international m'a donne un esprit tres adaptable et une forte appreciation de la collaboration interculturelle.</p><p>Mon parcours professionnel repose sur la resolution de defis techniques complexes et l'optimisation des infrastructures. De la modernisation de systemes Java legacy a la CPAM des Bouches-du-Rhone au role d'unique referent IT interne chez BARJANE, je m'epanouis en construisant des solutions tech securisees, efficaces et scalables. Aujourd'hui, je renforce encore mes competences de developpement en tant que Software Engineer chez REACTIS Group.</p><p>Au-dela du code, je sais que la technologie est la plus puissante lorsqu'elle est alignee a la strategie business. En tant que Directeur Regional et Business Manager pour Junior Conseil Taker, j'ai construit l'antenne de Marseille de zero, en manageant des equipes transverses, en developpant le B2B et en pilotant des projets client de bout en bout. Que je definisse des strategies regionales ou modele des solutions business en hackathons, je suis passionne par le lien entre execution technique et croissance commerciale.</p>",
-    "profile.ctaDownload": "Telecharger le CV",
+    "profile.eyebrow": "Profil détaillé",
+    "profile.heroText": "<p><strong>Ce que je construis</strong></p><p>Je vise des rôles qui combinent responsabilités de management, technologie et impact commercial. Mon objectif est de diriger des projets où stratégie, valeur client et exécution logicielle sont parfaitement alignées.</p><p>Né à Singapour avec la nationalité française, je suis un citoyen du monde. Ayant vécu sur quatre continents - à Singapour, au Vietnam, en Australie et en France - et avec des études à venir au Canada, je suis pleinement bilingue en anglais et en français. Ce parcours international m'a donné un esprit très adaptable et une forte appréciation de la collaboration interculturelle.</p><p>Mon parcours professionnel repose sur la résolution de défis techniques complexes et l'optimisation des infrastructures. De la modernisation de systèmes Java legacy à la CPAM des Bouches-du-Rhône au rôle d'unique référent IT interne chez BARJANE, je m'épanouis en construisant des solutions tech sécurisées, efficaces et scalables. Aujourd'hui, je renforce encore mes compétences de développement en tant que Software Engineer chez REACTIS Group.</p><p>Au-delà du code, je sais que la technologie est la plus puissante lorsqu'elle est alignée à la stratégie business. En tant que Directeur Régional et Business Manager pour Junior Conseil Taker, j'ai construit l'antenne de Marseille de zéro, en manageant des équipes transverses, en développant le B2B et en pilotant des projets client de bout en bout. Que je définisse des stratégies régionales ou modèle des solutions business en hackathons, je suis passionné par le lien entre exécution technique et croissance commerciale.</p>",
+    "profile.ctaDownload": "Télécharger le CV",
     "profile.ctaBack": "Retour au portfolio",
     "profile.ctaLinkedin": "LinkedIn",
     "career.kicker": "Objectif",
     "career.title": "Ce que je construis",
-    "career.body": "Je vise des roles combinant management, technologie et impact commercial. Mon objectif est de diriger des projets alignant strategie, valeur client et execution logicielle.",
+    "career.body": "Je vise des rôles combinant management, technologie et impact commercial. Mon objectif est de diriger des projets alignant stratégie, valeur client et exécution logicielle.",
     "education.kicker": "Formation",
-    "education.title": "Parcours academique",
+    "education.title": "Parcours académique",
     "education.epitech.location": "Marseille, France",
-    "education.epitech.program": "Diplome d'etablissement - Expert en Technologies de l'information (Bac +5)",
-    "education.epitech.expected": "Prevu en 2028",
-    "education.mcgill.location": "Montreal, Canada",
+    "education.epitech.program": "Diplôme d'établissement - Expert en Technologies de l'information (Bac +5)",
+    "education.epitech.expected": "Prévu en 2028",
+    "education.mcgill.location": "Montréal, Canada",
     "education.mcgill.program": "Certificat en management (parcours Bachelor)",
-    "education.mcgill.expected": "Prevu en 2027",
+    "education.mcgill.expected": "Prévu en 2027",
     "education.hec.location": "Paris, France",
     "education.hec.program": "Certificat d'entrepreneuriat IA",
-    "education.hec.status": "En cours",
-    "education.earlier": "Etudes precedentes",
-    "experience.reactis.body": "Travail sur une application de maintenance aeronautique, developpement de fonctionnalites Java en production et contribution a la qualite et aux sprints.",
+    "education.hec.status": "Obtenu en 2026",
+    "education.earlier": "Études précédentes",
+    "experience.reactis.body": "Travail sur une application de maintenance aéronautique, développement de fonctionnalités Java en production et contribution à la qualité et aux sprints.",
     "experience.reactis.tools": "Langages : Java, SQL, Neo4j, Python",
-    "experience.barjane.body": "Gestion du support IT, amelioration de la fiabilite, automatisation des processus et soutien a la modernisation du site.",
+    "experience.barjane.body": "Gestion du support IT, amélioration de la fiabilité, automatisation des processus et soutien à la modernisation du site.",
     "experience.barjane.tools": "Langages et outils : JavaScript, HTML, CSS, SQL, Excel, WordPress",
-    "experience.cpam.body": "Contribution a la migration Java, refactorisation, documentation et stabilisation avec des correctifs cibles.",
+    "experience.cpam.body": "Contribution à la migration Java, refactorisation, documentation et stabilisation avec des correctifs ciblés.",
     "experience.cpam.tools": "Langages et outils : Java, SQL, Python, Git, SonarQube, SoapUI",
     "cert.kicker": "Certificats",
-    "cert.title": "Certifications et resultats",
-    "cert.mantu.meta": "Mantu · Delivre nov 2025",
-    "cert.oxford.meta": "Universite d'Oxford · Delivre juil 2022",
-    "cert.ielts.meta": "IELTS Official · Delivre jan 2023 · Expire jan 2025",
-    "cert.toefl.meta": "TOEFL · Delivre juin 2025",
-    "community.kicker": "Communaute",
-    "community.title": "Experience benevole",
-    "community.bde.title": "Vice-president du BDE - EPITECH Marseille",
-    "community.bde.meta": "EPITECH - Institut europeen de technologie · mai 2025 - mars 2026 (11 mois) · Education",
-    "community.bde.detail1": "Organisation d'evenements etudiants (soirees, integrations, LAN) pour renforcer la cohesion du campus.",
-    "community.bde.detail2": "Gestion du bureau BDE, animation des reunions hebdomadaires et coordination avec l'administration.",
-    "community.bde.detail3": "Planification des priorites annuelles, suivi budgetaire et partenariats locaux.",
-    "community.bde.detail4": "Gestion de la communication et du contenu visuel pour la vie etudiante.",
-    "community.bde.impact1": "Participation plus elevee aux evenements du BDE.",
+    "cert.title": "Certifications et résultats",
+    "cert.mantu.meta": "Mantu · Délivré nov 2025",
+    "cert.oxford.meta": "Université d'Oxford · Délivré juil 2022",
+    "cert.ielts.meta": "IELTS Official · Délivré jan 2023 · Expiré jan 2025",
+    "cert.toefl.meta": "TOEFL · Délivré juin 2025",
+    "community.kicker": "Communauté",
+    "community.title": "Expérience bénévole",
+    "community.bde.title": "Vice-président du BDE - EPITECH Marseille",
+    "community.bde.meta": "EPITECH - Institut européen de technologie · mai 2025 - mars 2026 (11 mois) · Éducation",
+    "community.bde.detail1": "Organisation d'événements étudiants (soirées, intégrations, LAN) pour renforcer la cohésion du campus.",
+    "community.bde.detail2": "Gestion du bureau BDE, animation des réunions hebdomadaires et coordination avec l'administration.",
+    "community.bde.detail3": "Planification des priorités annuelles, suivi budgétaire et partenariats locaux.",
+    "community.bde.detail4": "Gestion de la communication et du contenu visuel pour la vie étudiante.",
+    "community.bde.impact1": "Participation plus élevée aux événements du BDE.",
     "community.bde.impact2": "Mise en place de partenariats locaux.",
-    "community.bde.impact3": "Amelioration de la communication interne et externe.",
+    "community.bde.impact3": "Amélioration de la communication interne et externe.",
     "community.cobra.title": "Cobra Keeper",
-    "community.cobra.meta": "EPITECH - Institut europeen de technologie · jan 2025 - aujourd'hui · Education",
-    "community.cobra.detail1": "Animation du Coding Club et Camp via ateliers, challenges et evenements.",
-    "community.cobra.detail2": "Coordination de l'equipe Cobras et soutien a la motivation.",
-    "community.cobra.detail3": "Organisation des journees portes ouvertes pour les futurs etudiants et leurs familles.",
-    "community.cobra.impact1": "Participation accrue aux activites Coding Club et Camp.",
-    "community.cobra.impact2": "Renforcement de l'engagement et de la cohesion d'equipe.",
-    "community.planete.title": "Benevole - Planete Perles (Les Perles de la Cote Bleue)",
+    "community.cobra.meta": "EPITECH - Institut européen de technologie · jan 2025 - aujourd'hui · Éducation",
+    "community.cobra.detail1": "Animation du Coding Club et Camp via ateliers, challenges et événements.",
+    "community.cobra.detail2": "Coordination de l'équipe Cobras et soutien à la motivation.",
+    "community.cobra.detail3": "Organisation des journées portes ouvertes pour les futurs étudiants et leurs familles.",
+    "community.cobra.impact1": "Participation accrue aux activités Coding Club et Camp.",
+    "community.cobra.impact2": "Renforcement de l'engagement et de la cohésion d'équipe.",
+    "community.planete.title": "Bénévole - Planète Perles (Les Perles de la Côte Bleue)",
     "community.planete.meta": "sept 2018 - aujourd'hui · Environnement",
-    "community.planete.detail1": "Participation a des operations recurrentes de nettoyage de plages et d'espaces naturels.",
+    "community.planete.detail1": "Participation à des opérations récurrentes de nettoyage de plages et d'espaces naturels.",
     "community.planete.detail2": "Encadrement de groupes d'enfants et sensibilisation aux enjeux environnementaux.",
-    "community.planete.impact1": "Contribution a la preservation des espaces naturels de la Cote Bleue.",
+    "community.planete.impact1": "Contribution à la préservation des espaces naturels de la Côte Bleue.",
     "community.planete.impact2": "Sensibilisation de dizaines d'enfants au respect de l'environnement.",
-    "community.planete.impact3": "Renforcement des liens entre actions communautaires et ecologie.",
-    "community.planete.support": "Activite associee : nettoyage de plage avec Bootcamp Cote Bleue",
-    "community.bootcamp.title": "Benevole - Bootcamp Cote Bleue",
-    "community.bootcamp.meta": "sept 2018 - aujourd'hui · Sante",
-    "community.bootcamp.detail1": "Moderation et montage de videos YouTube pour promouvoir les sessions.",
-    "community.bootcamp.detail2": "Gestion de la communication communautaire sur les reseaux sociaux.",
-    "community.bootcamp.detail3": "Developpement d'un site moderne pour ameliorer la visibilite en ligne.",
+    "community.planete.impact3": "Renforcement des liens entre actions communautaires et écologie.",
+    "community.planete.support": "Activité associée : nettoyage de plage avec Bootcamp Côte Bleue",
+    "community.bootcamp.title": "Bénévole - Bootcamp Côte Bleue",
+    "community.bootcamp.meta": "sept 2018 - aujourd'hui · Santé",
+    "community.bootcamp.detail1": "Modération et montage de vidéos YouTube pour promouvoir les sessions.",
+    "community.bootcamp.detail2": "Gestion de la communication communautaire sur les réseaux sociaux.",
+    "community.bootcamp.detail3": "Développement d'un site moderne pour améliorer la visibilité en ligne.",
     "community.bootcamp.detail4": "Participation aux sessions pour soutenir les membres et l'engagement.",
-    "community.bootcamp.impact1": "Visibilite digitale accrue et croissance de la participation.",
+    "community.bootcamp.impact1": "Visibilité digitale accrue et croissance de la participation.",
     "community.bootcamp.impact2": "Communauté plus forte et plus active.",
-    "community.bootcamp.impact3": "Cohesion de groupe amelioree pendant les sessions.",
-    "community.bootcamp.support": "Activite associee : highlights des sessions Bootcamp Cote Bleue",
+    "community.bootcamp.impact3": "Cohésion de groupe améliorée pendant les sessions.",
+    "community.bootcamp.support": "Activité associée : highlights des sessions Bootcamp Côte Bleue",
     "projects.jeb.title": "JEB Incubator - Survivor Seminar EPITECH",
-    "projects.jeb.meta": "sept 2025 · Associe a EPITECH - Institut europeen de technologie",
+    "projects.jeb.meta": "sept 2025 · Associé à EPITECH - Institut européen de technologie",
     "projects.jeb.body": "Livraison en 21 jours d'une plateforme web pour valoriser les projets d'incubateur et faciliter les connexions entre startups, investisseurs et partenaires.",
-    "projects.jeb.detail1": "Creation de pages catalogue, espaces startup, messagerie interne, actualites et calendrier d'evenements.",
-    "projects.jeb.detail2": "Implementation d'un backend complet avec operations CRUD et integration base de donnees avec une API existante.",
-    "projects.jeb.detail3": "Developpement d'un frontend responsive et accessible, avec back-office admin pour contenu, utilisateurs et statistiques.",
-    "projects.jeb.detail4": "Travail en mode agile avec retours client continus et evolution des exigences.",
+    "projects.jeb.detail1": "Création de pages catalogue, espaces startup, messagerie interne, actualités et calendrier d'événements.",
+    "projects.jeb.detail2": "Implémentation d'un backend complet avec opérations CRUD et intégration base de données avec une API existante.",
+    "projects.jeb.detail3": "Développement d'un frontend responsive et accessible, avec back-office admin pour contenu, utilisateurs et statistiques.",
+    "projects.jeb.detail4": "Travail en mode agile avec retours client continus et évolution des exigences.",
     "projects.jeb.impact1": "Note A pour la livraison du projet.",
-    "projects.jeb.impact2": "Solution fonctionnelle livree dans un delai court.",
-    "projects.jeb.impact3": "Renforcement des competences fullstack, UX/UI, gestion client et collaboration agile.",
+    "projects.jeb.impact2": "Solution fonctionnelle livrée dans un délai court.",
+    "projects.jeb.impact3": "Renforcement des compétences fullstack, UX/UI, gestion client et collaboration agile.",
     "projects.jeb.stack": "Stack : Vite, Vue.js, Django, Python, Docker, GitHub Actions",
-    "projects.jeb.support": "Support : presentation du projet, page principale du site",
+    "projects.jeb.support": "Support : présentation du projet, page principale du site",
     "projects.hackathon.title": "Hackathon KEDGE Business School x EPITECH",
-    "projects.hackathon.meta": "mars 2025 - avril 2025 · Associe a EPITECH - Institut europeen de technologie",
-    "projects.hackathon.body": "Contribution a la resolution d'un challenge business pour Biotech One en combinant technique, analyse de marche et strategie.",
-    "projects.hackathon.detail1": "Analyse de la rentabilite des ingredients pour recommander la meilleure option economique.",
-    "projects.hackathon.detail2": "Etudes de marche et analyse concurrentielle pour identifier tendances, opportunites et besoins clients.",
+    "projects.hackathon.meta": "mars 2025 - avril 2025 · Associé à EPITECH - Institut européen de technologie",
+    "projects.hackathon.body": "Contribution à la résolution d'un challenge business pour Biotech One en combinant technique, analyse de marché et stratégie.",
+    "projects.hackathon.detail1": "Analyse de la rentabilité des ingrédients pour recommander la meilleure option économique.",
+    "projects.hackathon.detail2": "Études de marché et analyse concurrentielle pour identifier tendances, opportunités et besoins clients.",
     "projects.hackathon.detail3": "Collecte de la Voix du Client via interviews et retours terrain.",
-    "projects.hackathon.detail4": "Construction d'un modele business complet incluant SWOT, proposition de valeur, cibles et estimations de couts.",
-    "projects.hackathon.impact1": "Remise d'un rapport strategique complet a Biotech One en fin de hackathon.",
-    "projects.hackathon.impact2": "Renforcement des competences en analyse business, marketing et collaboration inter-ecoles.",
-    "projects.hackathon.impact3": "Experience pratique sur un probleme d'entreprise reel.",
-    "projects.hackathon.support": "Support : presentation finale avec l'equipe KEDGE (hackathon Biotech One)",
+    "projects.hackathon.detail4": "Construction d'un modèle business complet incluant SWOT, proposition de valeur, cibles et estimations de coûts.",
+    "projects.hackathon.impact1": "Remise d'un rapport stratégique complet à Biotech One en fin de hackathon.",
+    "projects.hackathon.impact2": "Renforcement des compétences en analyse business, marketing et collaboration inter-écoles.",
+    "projects.hackathon.impact3": "Expérience pratique sur un problème d'entreprise réel.",
+    "projects.hackathon.support": "Support : présentation finale avec l'équipe KEDGE (hackathon Biotech One)",
     "skills.technical": "Technique",
     "skills.technical.item1": "Java, SQL, Python",
     "skills.technical.item2": "Web : HTML, CSS, JavaScript",
-    "skills.technical.item3": "Workflow Git et outils de qualite code",
+    "skills.technical.item3": "Workflow Git et outils de qualité code",
     "skills.professional": "Professionnel",
     "skills.professional.item1": "Travail agile et livraison de sprint",
     "skills.professional.item2": "Communication transverse",
     "skills.professional.item3": "Optimisation et automatisation des processus",
     "skills.languages": "Langues",
     "skills.languages.item1": "Anglais (bilingue)",
-    "skills.languages.item2": "Francais (bilingue)",
-    "skills.languages.item3": "Espagnol (niveau professionnel limite)",
-    "skills.languages.item4": "Chinois (niveau debutant)",
-    "skills.kicker": "Forces cles",
-    "skills.title": "Apercu des competences",
-    "footer.profile": "<span id=\"year\"></span> Arnaud Jouan. Page de profil detaillee.",
+    "skills.languages.item2": "Français (bilingue)",
+    "skills.languages.item3": "Espagnol (niveau professionnel limité)",
+    "skills.languages.item4": "Chinois (niveau débutant)",
+    "skills.kicker": "Forces clés",
+    "skills.title": "Aperçu des compétences",
+    "footer.profile": "<span id=\"year\"></span> Arnaud Jouan. Page de profil détaillée.",
+    "meta.title.projects": "Arnaud Jouan | Projets",
+    "meta.description.projects": "Un aperçu détaillé des projets EPITECH d'Arnaud Jouan sur les trois années.",
+    "projectsPage.kicker": "Travaux sélectionnés",
+    "projectsPage.title": "Détails des projets",
+    "projectsPage.intro": "Un aperçu plus détaillé des projets réalisés chaque année à EPITECH — les objectifs, les technologies et ce que j'en ai retiré.",
+    "projectsPage.whatIBuilt": "Ce que j'ai réalisé",
+    "projectsPage.outcome": "Résultats et compétences",
+    "projectsPage.viewRepo": "Voir le dépôt",
+    "projectsPage.placeholder": "Ces projets ne sont pas encore en ligne — les descriptions détaillées arrivent bientôt. En attendant, le code est disponible dans le dépôt ci-dessous.",
+    "footer.projects": "<span id=\"year\"></span> Arnaud Jouan. Page des projets.",
+    "githubPage.kicker": "GitHub",
+    "githubPage.title": "Derniers dépôts GitHub",
+    "githubPage.loading": "Chargement des dépôts…",
+    "contact.formTitle": "Ou envoyez-moi un message directement",
+    "contact.copyEmail": "Copier l'e-mail",
+    "contact.copied": "Copié !",
+    "contact.vcard": "Enregistrer le contact",
+    "form.name": "Nom",
+    "form.email": "E-mail",
+    "form.message": "Message",
+    "form.send": "Envoyer le message",
+    "form.sending": "Envoi…",
+    "form.success": "Merci — votre message a été envoyé !",
+    "form.error": "Une erreur est survenue. Écrivez-moi directement par e-mail.",
   },
 };
+
+// Look up a translation for the language currently applied to <html>.
+function tr(key, fallback) {
+  const dict = translations[document.documentElement.lang] || translations.en;
+  return dict[key] || fallback || key;
+}
 
 function updateYear() {
   const yearEl = document.getElementById("year");
@@ -362,11 +478,42 @@ function updateYear() {
   }
 }
 
+// Turn a "Label: A, B, C" string into a row of chip elements.
+function renderTechChips() {
+  document.querySelectorAll(".tech-chips").forEach((el) => {
+    const text = el.textContent;
+    if (!text) {
+      return;
+    }
+    const colon = text.indexOf(":");
+    const list = colon >= 0 ? text.slice(colon + 1) : text;
+    const items = list
+      .split(/[,·]/)
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+    if (!items.length) {
+      return;
+    }
+    el.innerHTML = items
+      .map((item) => {
+        const safe = item
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        return `<span class="chip">${safe}</span>`;
+      })
+      .join("");
+  });
+}
+
 function applyTranslations(lang) {
   const dictionary = translations[lang] || translations.en;
   document.documentElement.lang = lang;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
+    if (el.hasAttribute("data-i18n-attr")) {
+      return; // these translate an attribute (e.g. placeholder), handled below
+    }
     const key = el.dataset.i18n;
     const value = dictionary[key];
     if (value) {
@@ -392,13 +539,27 @@ function applyTranslations(lang) {
   });
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.toggle("is-active", btn.dataset.lang === lang);
+    const isActive = btn.dataset.lang === lang;
+    btn.classList.toggle("is-active", isActive);
+    btn.setAttribute("aria-pressed", String(isActive));
   });
 
   updateYear();
+  renderTechChips();
 }
 
-const savedLang = localStorage.getItem(LANGUAGE_KEY) || "en";
+function detectInitialLang() {
+  const stored = localStorage.getItem(LANGUAGE_KEY);
+  if (stored === "en" || stored === "fr") {
+    return stored;
+  }
+  // No saved preference yet: fall back to the visitor's browser language.
+  const browserLang =
+    (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+  return browserLang.toLowerCase().startsWith("fr") ? "fr" : "en";
+}
+
+const savedLang = detectInitialLang();
 applyTranslations(savedLang);
 
 document.querySelectorAll(".lang-btn").forEach((btn) => {
@@ -408,6 +569,28 @@ document.querySelectorAll(".lang-btn").forEach((btn) => {
     applyTranslations(lang);
   });
 });
+
+const navEl = document.querySelector(".nav");
+const navToggle = document.querySelector(".nav-toggle");
+if (navEl && navToggle) {
+  const setOpen = (open) => {
+    navEl.classList.toggle("is-open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+  };
+
+  navToggle.addEventListener("click", () => {
+    setOpen(!navEl.classList.contains("is-open"));
+  });
+
+  const navLinks = document.getElementById("primary-nav");
+  if (navLinks) {
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        setOpen(false);
+      }
+    });
+  }
+}
 
 const revealElements = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
@@ -423,6 +606,45 @@ const observer = new IntersectionObserver(
 );
 
 revealElements.forEach((el) => observer.observe(el));
+
+// Scroll-spy: highlight the nav link for the section currently in view.
+// Matches the "#fragment" of any nav link (works for same-page "#x" links on
+// the home page and cross-page "index.html#x" links on the profile page), then
+// only observes sections whose id actually exists on the current page.
+const spyLinks = document.querySelectorAll('.nav-links a[href*="#"]');
+if (spyLinks.length) {
+  const linkFor = {};
+  spyLinks.forEach((link) => {
+    const id = link.getAttribute("href").split("#")[1];
+    if (id) {
+      linkFor[id] = link;
+    }
+  });
+
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        const link = linkFor[entry.target.id];
+        if (!link) {
+          return;
+        }
+        spyLinks.forEach((other) => other.classList.remove("is-current"));
+        link.classList.add("is-current");
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+  );
+
+  Object.keys(linkFor).forEach((id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      spy.observe(section);
+    }
+  });
+}
 
 function initEarthGlobe() {
   const canvas = document.getElementById("earthGlobe");
@@ -656,21 +878,17 @@ function initEarthGlobe() {
     });
   }
 
-  async function loadWorldGeometry() {
-    try {
-      const response = await fetch("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson");
-      if (!response.ok) {
-        throw new Error(`Failed to load world geometry: ${response.status}`);
-      }
-
-      const data = await response.json();
-      if (data && Array.isArray(data.features)) {
-        worldFeatures = data.features;
-        drawGlobe();
-      }
-    } catch (error) {
-      // Keep fallback continent rendering if remote GeoJSON is unavailable.
-      console.warn("World geometry unavailable, using fallback land shapes.", error);
+  function loadWorldGeometry() {
+    // GeoJSON is bundled as a <script> (assets/world-geo.js) that sets
+    // window.WORLD_GEOJSON. Loading it this way works both over http and
+    // when the page is opened directly from disk (file://), unlike fetch().
+    const data = window.WORLD_GEOJSON;
+    if (data && Array.isArray(data.features)) {
+      worldFeatures = data.features;
+      drawGlobe();
+    } else {
+      // Keep fallback continent rendering if the geometry is unavailable.
+      console.warn("World geometry unavailable, using fallback land shapes.");
     }
   }
 
@@ -786,14 +1004,46 @@ function initEarthGlobe() {
     ctx.stroke();
   }
 
-  function animate() {
-    drawGlobe();
+  let running = false;
+  let lastFrameTime = 0;
+  const frameInterval = 1000 / 30; // cap the globe at ~30fps to save CPU
 
-    if (!prefersReducedMotion) {
-      if (!isDragging) {
-        rotation += autoRotateSpeed;
-      }
-      frameHandle = window.requestAnimationFrame(animate);
+  function renderFrame(now) {
+    if (!running) {
+      return;
+    }
+    frameHandle = window.requestAnimationFrame(renderFrame);
+
+    if (!lastFrameTime) {
+      lastFrameTime = now;
+    }
+    const elapsed = now - lastFrameTime;
+    if (elapsed < frameInterval) {
+      return;
+    }
+    lastFrameTime = now - (elapsed % frameInterval);
+
+    if (!isDragging) {
+      // Advance by real elapsed time so speed is independent of frame rate.
+      rotation += autoRotateSpeed * (elapsed / 16.6667);
+    }
+    drawGlobe();
+  }
+
+  function startGlobe() {
+    if (running || prefersReducedMotion) {
+      return;
+    }
+    running = true;
+    lastFrameTime = 0;
+    frameHandle = window.requestAnimationFrame(renderFrame);
+  }
+
+  function stopGlobe() {
+    running = false;
+    if (frameHandle) {
+      window.cancelAnimationFrame(frameHandle);
+      frameHandle = 0;
     }
   }
 
@@ -835,8 +1085,26 @@ function initEarthGlobe() {
     canvas.releasePointerCapture(event.pointerId);
   }
 
-  animate();
+  drawGlobe();
   loadWorldGeometry();
+
+  // Only animate while the globe is actually visible on screen — this stops
+  // the per-frame world redraw from burning CPU while reading the rest of the page.
+  if ("IntersectionObserver" in window) {
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          startGlobe();
+        } else {
+          stopGlobe();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    visibilityObserver.observe(canvas);
+  } else {
+    startGlobe();
+  }
 
   canvas.addEventListener("pointerdown", onPointerDown);
   canvas.addEventListener("pointermove", onPointerMove);
@@ -845,9 +1113,7 @@ function initEarthGlobe() {
 
   window.addEventListener("resize", drawGlobe);
   window.addEventListener("pagehide", () => {
-    if (frameHandle) {
-      window.cancelAnimationFrame(frameHandle);
-    }
+    stopGlobe();
 
     canvas.removeEventListener("pointerdown", onPointerDown);
     canvas.removeEventListener("pointermove", onPointerMove);
@@ -857,3 +1123,230 @@ function initEarthGlobe() {
 }
 
 initEarthGlobe();
+
+// --- Scroll progress bar ---
+(function () {
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+  const update = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + "%";
+  };
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
+  update();
+})();
+
+// --- Light/dark theme toggle (button injected next to the language toggle) ---
+(function () {
+  const root = document.documentElement;
+  const host = document.querySelector(".lang-toggle");
+  if (!host) {
+    return;
+  }
+  const moon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  const sun =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "theme-btn";
+  btn.setAttribute("aria-label", "Toggle light or dark theme");
+  const sync = () => {
+    const isLight = root.getAttribute("data-theme") === "light";
+    btn.innerHTML = isLight ? sun : moon;
+    btn.setAttribute("aria-pressed", String(isLight));
+  };
+  btn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
+    sync();
+  });
+  sync();
+  host.appendChild(btn);
+})();
+
+// --- Live GitHub repositories (only where a #github-repos container exists) ---
+(function () {
+  const container = document.getElementById("github-repos");
+  if (!container) {
+    return;
+  }
+  const esc = (s) =>
+    String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  fetch("https://api.github.com/users/Arjouan/repos?sort=updated&per_page=6")
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((repos) => {
+      if (!Array.isArray(repos) || !repos.length) {
+        container.innerHTML = '<p class="muted">No public repositories to show yet.</p>';
+        return;
+      }
+      container.innerHTML = repos
+        .map((repo) => {
+          const desc = repo.description ? "<p>" + esc(repo.description) + "</p>" : "";
+          const lang = repo.language ? esc(repo.language) : "";
+          const stars = repo.stargazers_count ? " · ★ " + repo.stargazers_count : "";
+          return (
+            '<article class="card">' +
+            "<h3>" + esc(repo.name) + "</h3>" +
+            desc +
+            '<p class="meta">' + lang + stars + "</p>" +
+            '<div class="card-links"><a href="' + repo.html_url +
+            '" target="_blank" rel="noreferrer">' + tr("project1.repo", "Repository") + "</a></div>" +
+            "</article>"
+          );
+        })
+        .join("");
+    })
+    .catch(() => {
+      container.innerHTML =
+        '<p class="muted">Couldn\'t load repositories right now — visit <a href="https://github.com/Arjouan" target="_blank" rel="noreferrer">github.com/Arjouan</a>.</p>';
+    });
+})();
+
+// --- Contact form (Web3Forms) ---
+(function () {
+  const form = document.getElementById("contact-form");
+  if (!form) {
+    return;
+  }
+  const status = form.querySelector(".form-status");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    status.className = "form-status";
+    status.textContent = tr("form.sending", "Sending…");
+    const data = Object.fromEntries(new FormData(form).entries());
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.success) {
+          status.textContent = tr("form.success", "Thanks — your message has been sent!");
+          status.classList.add("is-success");
+          form.reset();
+        } else {
+          status.textContent = tr("form.error", "Something went wrong. Please email me directly.");
+          status.classList.add("is-error");
+        }
+      })
+      .catch(() => {
+        status.textContent = tr("form.error", "Something went wrong. Please email me directly.");
+        status.classList.add("is-error");
+      });
+  });
+})();
+
+// --- Copy-to-clipboard email ---
+(function () {
+  const btn = document.querySelector(".copy-email");
+  if (!btn) {
+    return;
+  }
+  const label = btn.querySelector(".copy-email-label");
+  const email = btn.dataset.email || "";
+  let timer;
+  const confirm = () => {
+    if (label) {
+      label.textContent = tr("contact.copied", "Copied!");
+    }
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      if (label) {
+        label.textContent = tr("contact.copyEmail", "Copy email");
+      }
+    }, 2000);
+  };
+  const legacyCopy = () => {
+    const ta = document.createElement("textarea");
+    ta.value = email;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "absolute";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+    } catch (e) {}
+    document.body.removeChild(ta);
+    confirm();
+  };
+  btn.addEventListener("click", () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(confirm).catch(legacyCopy);
+    } else {
+      legacyCopy();
+    }
+  });
+})();
+
+// --- Plane transition into the detailed profile (once per session) ---
+(function () {
+  const links = document.querySelectorAll('a[href="profile.html"]');
+  if (!links.length) {
+    return;
+  }
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return; // respect reduced motion — navigate normally
+  }
+  let alreadyFlown = false;
+  try {
+    alreadyFlown = sessionStorage.getItem("planeShown") === "1";
+  } catch (e) {}
+  if (alreadyFlown) {
+    return; // only play once per browsing session
+  }
+
+  const planeSvg =
+    '<div class="plane-fly">' +
+    '<div class="plane3d">' +
+    '<span class="wing wing-l"></span>' +
+    '<span class="wing wing-r"></span>' +
+    '</div></div>';
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      // Let modified clicks (open in new tab, etc.) behave normally.
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
+        return;
+      }
+      event.preventDefault();
+      const href = link.getAttribute("href");
+      try {
+        sessionStorage.setItem("planeShown", "1");
+      } catch (e) {}
+
+      const overlay = document.createElement("div");
+      overlay.className = "plane-transition";
+      overlay.setAttribute("aria-hidden", "true");
+      overlay.innerHTML = planeSvg;
+      document.body.appendChild(overlay);
+      window.requestAnimationFrame(() => overlay.classList.add("is-active"));
+
+      window.setTimeout(() => {
+        window.location.href = href;
+      }, 1750);
+    });
+  });
+})();
+
+// --- Service worker (PWA). Only registers in a secure context (https/localhost). ---
+(function () {
+  if (!("serviceWorker" in navigator)) {
+    return;
+  }
+  if (location.protocol !== "https:" && location.hostname !== "localhost") {
+    return;
+  }
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+})();

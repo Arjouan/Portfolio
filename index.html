@@ -3,34 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061421" />
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      if (localStorage.getItem("introSeen")) {
+        document.documentElement.classList.add("intro-seen");
+      }
+      var theme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {}
+  </script>
   <meta name="description" content="Arnaud Jouan portfolio - software engineering projects, internships, and contact." data-i18n="meta.description.portfolio" data-i18n-attr="content" />
   <title data-i18n="meta.title.portfolio">Arnaud Jouan | Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="canonical" href="https://arjouan.github.io/Portfolio/" />
+
+  <!-- Social preview (Open Graph + Twitter). -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arjouan.github.io/Portfolio/" />
+  <meta property="og:title" content="Arnaud Jouan | Portfolio" />
+  <meta property="og:description" content="Computer Science Engineer student building at the intersection of management, commerce, and information technology." />
+  <meta property="og:image" content="https://arjouan.github.io/Portfolio/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arnaud Jouan | Portfolio" />
+  <meta name="twitter:description" content="Computer Science Engineer student building at the intersection of management, commerce, and information technology." />
+  <meta name="twitter:image" content="https://arjouan.github.io/Portfolio/assets/og-image.png" />
+
+  <!-- Structured data so search engines understand who this page is about. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Arnaud Jouan",
+    "url": "https://arjouan.github.io/Portfolio/",
+    "image": "https://arjouan.github.io/Portfolio/assets/og-image.png",
+    "jobTitle": "Software Engineer",
+    "email": "mailto:arnaud.jouan@epitech.eu",
+    "nationality": "French",
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "EPITECH" },
+      { "@type": "CollegeOrUniversity", "name": "McGill University" }
+    ],
+    "knowsLanguage": ["en", "fr", "es", "zh"],
+    "sameAs": [
+      "https://github.com/Arjouan",
+      "https://www.linkedin.com/in/arnaud-jouan-613a53263"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader-badge">AJ</div>
+  </div>
+
   <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
   <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-3" aria-hidden="true"></div>
 
   <header class="site-header section">
     <nav class="nav">
       <a href="#top" class="brand">AJ</a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-links" id="primary-nav">
         <a href="profile.html" data-i18n="nav.detailedProfile">Detailed Profile</a>
         <a href="#profile" data-i18n="nav.profile">Profile</a>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
         <a href="#experience" data-i18n="nav.experience">Experience</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
-      <div class="lang-toggle" aria-label="Language selector">
-        <button class="lang-btn" type="button" data-lang="en">EN</button>
-        <button class="lang-btn" type="button" data-lang="fr">FR</button>
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+        <button class="lang-btn" type="button" data-lang="fr" aria-pressed="false" aria-label="Francais">FR</button>
       </div>
     </nav>
 
-    <section id="top" class="hero reveal">
+    <section id="top" class="hero">
       <p class="eyebrow" data-i18n="hero.eyebrow">Computer Science Engineer Student</p>
       <h1>Arnaud Jouan</h1>
       <p class="hero-text" data-i18n="hero.subtitle">
@@ -38,9 +100,22 @@
         maintainable code, and real business impact.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-secondary" href="profile.html" data-i18n="hero.ctaProfile">Read Full Profile</a>
-        <a class="btn btn-primary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer" data-i18n="hero.ctaGithub">GitHub</a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer" data-i18n="hero.ctaLinkedin">LinkedIn</a>
+        <a class="btn btn-secondary" href="profile.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          <span data-i18n="hero.ctaProfile">Read Full Profile</span>
+        </a>
+        <a class="btn btn-secondary" href="assets/CV/CV%20Arnaud%20Jouan.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span data-i18n="profile.ctaDownload">Download CV</span>
+        </a>
+        <a class="btn btn-primary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          <span data-i18n="hero.ctaGithub">GitHub</span>
+        </a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2.1-1.6-2.1-.9 0-1.4.6-1.6 1.2-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg>
+          <span data-i18n="hero.ctaLinkedin">LinkedIn</span>
+        </a>
       </div>
     </section>
   </header>
@@ -87,7 +162,7 @@
             </li>
             <li>
               <img class="profile-cert-logo" src="assets/logos/HEC%20logo.png" alt="HEC logo" loading="lazy" />
-              <span data-i18n-html="cert.item3"><strong>HEC</strong> - AI Entrepreneurship Certificate - In progress</span>
+              <span data-i18n-html="cert.item3"><strong>HEC</strong> - AI Entrepreneurship Certificate - Issued 2026</span>
             </li>
             <li>
               <img class="profile-cert-logo" src="assets/logos/mantu%20logo.png" alt="Mantu logo" loading="lazy" />
@@ -111,9 +186,9 @@
         <article class="card">
           <h3 data-i18n="project1.title">EPITECH Year 1 Projects</h3>
           <p data-i18n="project1.body">Foundational C projects focused on algorithms, Unix programming, and clean software structure.</p>
-          <p class="meta" data-i18n="project1.stack">Stack: C, Makefile, Linux</p>
+          <p class="meta tech-chips" data-i18n="project1.stack">Stack: C, Makefile, Linux</p>
           <div class="card-links">
-            <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer" data-i18n="project1.details">Project Details</a>
+            <a href="projects.html#year1" data-i18n="project1.details">Project Details</a>
             <a href="https://github.com/Arjouan/Epitech-Year-1-Projects" target="_blank" rel="noreferrer" data-i18n="project1.repo">Repository</a>
           </div>
         </article>
@@ -121,9 +196,9 @@
         <article class="card">
           <h3 data-i18n="project2.title">EPITECH Year 2 Projects</h3>
           <p data-i18n="project2.body">Intermediate projects covering software engineering practices, architecture, and application development.</p>
-          <p class="meta" data-i18n="project2.stack">Stack: C, C++, Networking, Systems</p>
+          <p class="meta tech-chips" data-i18n="project2.stack">Stack: C, C++, Networking, Systems</p>
           <div class="card-links">
-            <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer" data-i18n="project2.details">Project Details</a>
+            <a href="projects.html#year2" data-i18n="project2.details">Project Details</a>
             <a href="https://github.com/Arjouan/Epitech-Year-2-Projects" target="_blank" rel="noreferrer" data-i18n="project2.repo">Repository</a>
           </div>
         </article>
@@ -131,9 +206,9 @@
         <article class="card">
           <h3 data-i18n="project3.title">EPITECH Year 3 Projects</h3>
           <p data-i18n="project3.body">Advanced projects emphasizing scalable solutions, collaboration, and production-oriented delivery.</p>
-          <p class="meta" data-i18n="project3.stack">Stack: Java, Web, Cloud, DevOps</p>
+          <p class="meta tech-chips" data-i18n="project3.stack">Stack: Java, Web, Cloud, DevOps</p>
           <div class="card-links">
-            <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer" data-i18n="project3.details">Project Details</a>
+            <a href="projects.html#year3" data-i18n="project3.details">Project Details</a>
             <a href="https://github.com/Arjouan/Epitech-Year-3-Projects" target="_blank" rel="noreferrer" data-i18n="project3.repo">Repository</a>
           </div>
         </article>
@@ -153,7 +228,7 @@
           </div>
           <p class="meta" data-i18n="exp1.meta">Software Developer Intern | Mar 2026 - Present</p>
           <p data-i18n="exp1.body">Working as a developer on an aeronautical maintenance application, developing and maintaining Java features for production, writing clean and testable code, and supporting sprint delivery through code reviews and bug fixing.</p>
-          <p class="meta" data-i18n="exp1.tools">Languages: Java, SQL, Neo4j, Python</p>
+          <p class="meta tech-chips" data-i18n="exp1.tools">Languages: Java, SQL, Neo4j, Python</p>
         </article>
 
         <article class="timeline-item">
@@ -163,7 +238,7 @@
           </div>
           <p class="meta" data-i18n="exp2.meta">Internal IT Referent Intern | Sep 2025 - Feb 2026</p>
           <p data-i18n="exp2.body">Managed internal IT operations, improved infrastructure reliability, automated recurring support tasks, and contributed to website modernization projects to improve user experience and reduce manual interventions.</p>
-          <p class="meta" data-i18n="exp2.tools">Languages & tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
+          <p class="meta tech-chips" data-i18n="exp2.tools">Languages & tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
         </article>
 
         <article class="timeline-item">
@@ -173,7 +248,7 @@
           </div>
           <p class="meta" data-i18n="exp3.meta">Java Developer Intern | Sep 2024 - Dec 2024</p>
           <p data-i18n="exp3.body">Participated in migrating legacy Java components to a more maintainable architecture, improved code quality through refactoring and documentation, and helped stabilize the application with targeted fixes and validation testing.</p>
-          <p class="meta" data-i18n="exp3.tools">Languages & Tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
+          <p class="meta tech-chips" data-i18n="exp3.tools">Languages & Tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
         </article>
       </div>
     </section>
@@ -184,10 +259,39 @@
         <h2 data-i18n="contact.title">Let us build something useful.</h2>
         <p data-i18n="contact.body">I am currently looking for internships and engineering opportunities with international teams.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:arnaud.jouan@epitech.eu" data-i18n="contact.email">Email Me</a>
-          <a class="btn btn-secondary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer" data-i18n="contact.github">View GitHub</a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer" data-i18n="contact.linkedin">LinkedIn</a>
+          <a class="btn btn-primary" href="mailto:arnaud.jouan@epitech.eu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span data-i18n="contact.email">Email Me</span>
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/Arjouan" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            <span data-i18n="contact.github">View GitHub</span>
+          </a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2.1-1.6-2.1-.9 0-1.4.6-1.6 1.2-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg>
+            <span data-i18n="contact.linkedin">LinkedIn</span>
+          </a>
+          <button type="button" class="btn btn-secondary copy-email" data-email="arnaud.jouan@epitech.eu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <span class="copy-email-label" data-i18n="contact.copyEmail">Copy email</span>
+          </button>
+          <a class="btn btn-secondary" href="assets/arnaud-jouan.vcf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span data-i18n="contact.vcard">Save contact</span>
+          </a>
         </div>
+
+        <h3 data-i18n="contact.formTitle">Or send a message directly</h3>
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="hidden" name="access_key" value="0f3dcb63-96db-4162-8c72-e87cc3d8b474" />
+          <input type="hidden" name="subject" value="New message from your portfolio" />
+          <input type="checkbox" name="botcheck" style="display: none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="text" name="name" required placeholder="Name" aria-label="Name" data-i18n="form.name" data-i18n-attr="placeholder" />
+          <input type="email" name="email" required placeholder="Email" aria-label="Email" data-i18n="form.email" data-i18n-attr="placeholder" />
+          <textarea name="message" required placeholder="Message" aria-label="Message" data-i18n="form.message" data-i18n-attr="placeholder"></textarea>
+          <button type="submit" class="btn btn-primary" data-i18n="form.send">Send message</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
@@ -196,6 +300,10 @@
     <p data-i18n-html="footer.text"><span id="year"></span> Arnaud Jouan. Built with HTML, CSS, and JavaScript.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
+
+  <!-- Privacy-friendly analytics (GoatCounter). Dashboard: https://arjouan.goatcounter.com -->
+  <script data-goatcounter="https://arjouan.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

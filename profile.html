@@ -3,11 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#061421" />
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      if (localStorage.getItem("introSeen")) {
+        document.documentElement.classList.add("intro-seen");
+      }
+      var theme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {}
+  </script>
   <meta name="description" content="Detailed profile of Arnaud Jouan: education, internships, certifications, and career goals." data-i18n="meta.description.profile" data-i18n-attr="content" />
   <title data-i18n="meta.title.profile">Arnaud Jouan | Detailed Profile</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="canonical" href="https://arjouan.github.io/Portfolio/profile.html" />
+
+  <!-- Social preview (Open Graph + Twitter). -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://arjouan.github.io/Portfolio/profile.html" />
+  <meta property="og:title" content="Arnaud Jouan | Detailed Profile" />
+  <meta property="og:description" content="Education, internships, certifications, and career goals of Arnaud Jouan." />
+  <meta property="og:image" content="https://arjouan.github.io/Portfolio/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arnaud Jouan | Detailed Profile" />
+  <meta name="twitter:description" content="Education, internships, certifications, and career goals of Arnaud Jouan." />
+  <meta name="twitter:image" content="https://arjouan.github.io/Portfolio/assets/og-image.png" />
+
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .profile-hero {
@@ -115,16 +146,59 @@
     }
 
     .timeline-detail {
+      position: relative;
       display: grid;
       gap: 0.8rem;
       margin-top: 1rem;
+      padding-left: 30px;
+    }
+
+    .timeline-detail::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(var(--accent), var(--accent-2));
+      opacity: 0.55;
+      border-radius: 2px;
     }
 
     .timeline-detail-item {
+      position: relative;
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius);
       padding: 1rem;
+    }
+
+    .timeline-detail-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.6);
+      transition: transform 220ms ease;
+    }
+
+    .timeline-detail-item:hover::before {
+      transform: scale(1.25);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-detail-item::before {
+        transition: none;
+      }
+
+      .timeline-detail-item:hover::before {
+        transform: none;
+      }
     }
 
     .timeline-detail-item p + p {
@@ -233,6 +307,32 @@
       gap: 0.45rem;
     }
 
+    .skill-meters {
+      list-style: none;
+      padding-left: 0;
+      gap: 0.7rem;
+    }
+
+    .skill-meter-label {
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .skill-bar {
+      display: block;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
     .muted {
       color: var(--muted);
     }
@@ -269,20 +369,28 @@
   </style>
 </head>
 <body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader-badge">AJ</div>
+  </div>
+
   <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
   <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-3" aria-hidden="true"></div>
 
   <header class="site-header section">
     <nav class="nav">
       <a href="index.html" class="brand">AJ</a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <div class="nav-links" id="primary-nav">
         <a href="index.html#projects" data-i18n="nav.projects">Projects</a>
         <a href="index.html#experience" data-i18n="nav.experience">Experience</a>
         <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
       </div>
-      <div class="lang-toggle" aria-label="Language selector">
-        <button class="lang-btn" type="button" data-lang="en">EN</button>
-        <button class="lang-btn" type="button" data-lang="fr">FR</button>
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button class="lang-btn" type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+        <button class="lang-btn" type="button" data-lang="fr" aria-pressed="false" aria-label="Francais">FR</button>
       </div>
     </nav>
 
@@ -311,9 +419,18 @@
         </div>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="assets/CV/CV%20Arnaud%20Jouan.pdf" download data-i18n="profile.ctaDownload">Download CV</a>
-        <a class="btn btn-primary" href="index.html" data-i18n="profile.ctaBack">Back to Portfolio</a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer" data-i18n="profile.ctaLinkedin">LinkedIn</a>
+        <a class="btn btn-primary" href="assets/CV/CV%20Arnaud%20Jouan.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span data-i18n="profile.ctaDownload">Download CV</span>
+        </a>
+        <a class="btn btn-primary" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+          <span data-i18n="profile.ctaBack">Back to Portfolio</span>
+        </a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/arnaud-jouan-613a53263" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM19 19h-3v-5.3c0-1.3-.5-2.1-1.6-2.1-.9 0-1.4.6-1.6 1.2-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg>
+          <span data-i18n="profile.ctaLinkedin">LinkedIn</span>
+        </a>
       </div>
     </section>
   </header>
@@ -363,7 +480,7 @@
           </div>
           <p class="meta" data-i18n="education.hec.location">Paris, France</p>
           <p class="muted" data-i18n="education.hec.program">AI Entrepreneurship Certificate</p>
-          <p class="meta" data-i18n="education.hec.status">In progress</p>
+          <p class="meta" data-i18n="education.hec.status">Obtained in 2026</p>
         </article>
       </div>
 
@@ -381,7 +498,7 @@
                   <img class="edu-logo" src="assets/logos/lycee%20saint%20louis%20saint%20marie.png" alt="Lycee Saint-Louis Sainte-Marie logo" loading="lazy" />
                   <h3>Lycee Saint-Louis Sainte-Marie</h3>
                 </div>
-                <p class="meta">Gignace-la-nerthe, France</p>
+                <p class="meta">Gignac-la-Nerthe, France</p>
               </article>
               <article class="section-block">
                 <div class="edu-head">
@@ -421,7 +538,7 @@
       </div>
     </section>
 
-    <section class="section reveal fold-section">
+    <section id="experience" class="section reveal fold-section">
       <details open>
         <summary class="fold-summary">
           <span class="section-kicker" data-i18n="experience.kicker.profile">Experience</span>
@@ -437,7 +554,7 @@
           </div>
           <p class="meta">Mar 2026 - Present</p>
           <p class="muted" data-i18n="experience.reactis.body">Working on an aeronautical maintenance application, developing production Java features, and contributing to code quality and sprint delivery with the engineering team.</p>
-          <p class="meta" data-i18n="experience.reactis.tools">Languages: Java, SQL, Neo4j, Python</p>
+          <p class="meta tech-chips" data-i18n="experience.reactis.tools">Languages: Java, SQL, Neo4j, Python</p>
         </article>
         <article class="timeline-detail-item">
           <div class="timeline-head">
@@ -446,7 +563,7 @@
           </div>
           <p class="meta">Sep 2025 - Feb 2026</p>
           <p class="muted" data-i18n="experience.barjane.body">Managed IT support operations, improved infrastructure reliability, automated recurring processes, and supported website modernization initiatives.</p>
-          <p class="meta" data-i18n="experience.barjane.tools">Languages and tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
+          <p class="meta tech-chips" data-i18n="experience.barjane.tools">Languages and tools: JavaScript, HTML, CSS, SQL, Excel, WordPress</p>
         </article>
         <article class="timeline-detail-item">
           <div class="timeline-head">
@@ -455,7 +572,7 @@
           </div>
           <p class="meta">Sep 2024 - Dec 2024</p>
           <p class="muted" data-i18n="experience.cpam.body">Contributed to legacy-to-modern Java migration, refactoring, documentation, and stabilization with targeted fixes and testing support.</p>
-          <p class="meta" data-i18n="experience.cpam.tools">Languages and tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
+          <p class="meta tech-chips" data-i18n="experience.cpam.tools">Languages and tools: Java, SQL, Python, Git, SonarQube, SoapUI</p>
         </article>
           </div>
         </div>
@@ -579,7 +696,7 @@
       </details>
     </section>
 
-    <section class="section reveal fold-section">
+    <section id="projects" class="section reveal fold-section">
       <details>
         <summary class="fold-summary">
           <span class="section-kicker" data-i18n="projects.kicker.profile">Projects</span>
@@ -603,7 +720,7 @@
                 <li data-i18n="projects.jeb.impact2">Functional solution delivered within a short timeline.</li>
                 <li data-i18n="projects.jeb.impact3">Strengthened fullstack, UX/UI, client management, and agile collaboration skills.</li>
               </ul>
-              <p class="meta" data-i18n="projects.jeb.stack">Tech stack: Vite, Vue.js, Django, Python, Docker, GitHub Actions</p>
+              <p class="meta tech-chips" data-i18n="projects.jeb.stack">Tech stack: Vite, Vue.js, Django, Python, Docker, GitHub Actions</p>
               <p class="meta" data-i18n="projects.jeb.support">Supporting material: Project presentation, main website page</p>
             </article>
 
@@ -653,11 +770,23 @@
         </article>
         <article class="section-block">
           <h3 data-i18n="skills.languages">Languages</h3>
-          <ul class="list-clean">
-            <li data-i18n="skills.languages.item1">English (bilingual)</li>
-            <li data-i18n="skills.languages.item2">French (bilingual)</li>
-            <li data-i18n="skills.languages.item3">Spanish (limited working proficiency)</li>
-            <li data-i18n="skills.languages.item4">Chinese (elementary proficiency)</li>
+          <ul class="list-clean skill-meters">
+            <li class="skill-meter">
+              <span class="skill-meter-label" data-i18n="skills.languages.item1">English (bilingual)</span>
+              <span class="skill-bar"><span class="skill-bar-fill" style="width: 100%"></span></span>
+            </li>
+            <li class="skill-meter">
+              <span class="skill-meter-label" data-i18n="skills.languages.item2">French (bilingual)</span>
+              <span class="skill-bar"><span class="skill-bar-fill" style="width: 100%"></span></span>
+            </li>
+            <li class="skill-meter">
+              <span class="skill-meter-label" data-i18n="skills.languages.item3">Spanish (limited working proficiency)</span>
+              <span class="skill-bar"><span class="skill-bar-fill" style="width: 55%"></span></span>
+            </li>
+            <li class="skill-meter">
+              <span class="skill-meter-label" data-i18n="skills.languages.item4">Chinese (elementary proficiency)</span>
+              <span class="skill-bar"><span class="skill-bar-fill" style="width: 30%"></span></span>
+            </li>
           </ul>
         </article>
       </div>
@@ -668,6 +797,11 @@
     <p data-i18n-html="footer.profile"><span id="year"></span> Arnaud Jouan. Detailed profile page.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script defer src="assets/world-geo.js"></script>
+  <script defer src="script.js"></script>
+
+  <!-- Privacy-friendly analytics (GoatCounter). Dashboard: https://arjouan.goatcounter.com -->
+  <script data-goatcounter="https://arjouan.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
