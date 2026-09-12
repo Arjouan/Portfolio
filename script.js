@@ -262,6 +262,9 @@ const translations = {
     "form.sending": "Sending…",
     "form.success": "Thanks — your message has been sent!",
     "form.error": "Something went wrong. Please email me directly.",
+    "notfound.eyebrow": "404",
+    "notfound.title": "Page Not Found",
+    "notfound.body": "The page you're looking for doesn't exist or has moved. Let's get you back on track.",
   },
   fr: {
     "meta.description.portfolio": "Portfolio d'Arnaud Jouan - projets d'ingénierie logicielle, stages et contact.",
@@ -462,6 +465,9 @@ const translations = {
     "form.sending": "Envoi…",
     "form.success": "Merci — votre message a été envoyé !",
     "form.error": "Une erreur est survenue. Écrivez-moi directement par e-mail.",
+    "notfound.eyebrow": "404",
+    "notfound.title": "Page introuvable",
+    "notfound.body": "La page que vous cherchez n'existe pas ou a été déplacée. Revenons sur la bonne voie.",
   },
 };
 
