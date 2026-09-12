@@ -169,7 +169,7 @@ The site is built so the **content always works without JavaScript**, and JS onl
 ## 9. PWA / offline
 
 - `manifest.webmanifest` makes the site installable (name, icons, standalone display, theme color).
-- `sw.js` uses a **cache-first** strategy for same-origin `GET` requests: it precaches the core files on install, serves them from cache when available, and lets external requests (GitHub API, analytics) pass through untouched. Bump the `CACHE` version string to invalidate.
+- `sw.js` handles same-origin `GET` requests with two strategies: **HTML pages are network-first** (always fetch fresh, falling back to cache only when offline) so content edits appear on the next load without any manual step; **static assets (CSS/JS/fonts) stay cache-first** for speed and offline use. External requests (GitHub API, analytics) pass through untouched. The `CACHE` version string only needs bumping if a static asset's *filename* stays the same but its content must be force-invalidated.
 - Registered only in a secure context (`https:` or `localhost`), so it's inert during local `file://` testing and activates once deployed.
 
 ---

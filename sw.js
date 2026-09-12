@@ -1,5 +1,6 @@
-// Simple offline cache for the portfolio. Bump CACHE to invalidate on updates.
-const CACHE = "aj-portfolio-v1";
+// Offline cache for the portfolio. Bump CACHE to force-invalidate on updates
+// (rarely needed now: HTML is network-first, see below).
+const CACHE = "aj-portfolio-v2";
 const CORE = [
   "./index.html",
   "./profile.html",
@@ -34,6 +35,26 @@ self.addEventListener("fetch", (event) => {
   if (req.method !== "GET" || new URL(req.url).origin !== self.location.origin) {
     return;
   }
+
+  // HTML pages: network-first so content edits show up on next load without
+  // needing a manual CACHE version bump. Falls back to cache when offline.
+  const isHtml = req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
+  if (isHtml) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.status === 200 && res.type === "basic") {
+            const clone = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(req, clone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  // Static assets (CSS/JS/fonts/images): cache-first for speed and offline use.
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) {
