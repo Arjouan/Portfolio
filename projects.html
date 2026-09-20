@@ -103,7 +103,7 @@
     <section class="hero">
       <p class="eyebrow" data-i18n="projectsPage.kicker">Selected Work</p>
       <h1 data-i18n="projectsPage.title">Project Details</h1>
-      <p class="hero-text" data-i18n="projectsPage.intro">A closer look at the group and solo projects I built at EPITECH — the goals, the tech, and the specific parts I owned. On team projects I often ended up in a support and organization role: documentation, architecture write-ups, and keeping the project structure consistent for everyone else, alongside hands-on feature work.</p>
+      <p class="hero-text" data-i18n="projectsPage.intro">A closer look at the group and solo projects I built at EPITECH — the goals, the tech, and the specific parts I owned. Across team projects, I paired hands-on feature work with ownership of the technical documentation — architecture diagrams, API references, contribution guides — that kept fast-moving codebases consistent for the rest of the team.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="index.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
@@ -127,7 +127,7 @@
         <p class="muted" data-i18n="proj.rtype.about">R-Type splits gameplay from presentation: a headless server runs the real, authoritative simulation while a thin SFML client only renders and captures input. The two talk over a custom binary UDP protocol with explicit headers and bounds-checked serialization, and all gameplay logic runs on a lightweight custom ECS (rtype_engine) shared by both binaries, so the simulation stays deterministic and in sync across every connected player.</p>
 
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
-        <p class="muted" data-i18n="proj.rtype.role">Kept the documentation current — README, architecture doc, API reference — and contributed small client-side gameplay features (enemy variety, projectile and collision behavior, visual polish).</p>
+        <p class="muted" data-i18n="proj.rtype.role">Shipped client-side gameplay features — enemy variety, projectile and collision behavior, visual polish — and kept the architecture doc, API reference, and README technically accurate.</p>
 
         <div class="media-placeholder" aria-hidden="true">
           <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
@@ -152,7 +152,7 @@
         <p class="muted" data-i18n="proj.area.about">AREA lets a user connect third-party services through OAuth, then chain an Action on one service to a Reaction on another — the same idea as IFTTT or Zapier. A FastAPI backend owns users, OAuth credentials, webhooks, and background schedulers; a Vue 3 web app and an Android companion app give two ways to build and monitor automations, with the whole stack running behind Docker Compose and a PostgreSQL database.</p>
 
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
-        <p class="muted" data-i18n="proj.area.role">Focused on project organization and onboarding — wrote the CONTRIBUTING guide and the architecture diagrams the team worked from, kept the README current, and built a couple of frontend views (services catalog, dashboard).</p>
+        <p class="muted" data-i18n="proj.area.role">Authored the system architecture diagrams and the CONTRIBUTING guide the team built from, built frontend views (services catalog, dashboard), and kept the README technically accurate.</p>
 
         <div class="media-placeholder" aria-hidden="true">
           <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
@@ -177,7 +177,7 @@
         <p class="muted" data-i18n="proj.zappy.about">Zappy is a real-time strategy game where several AI-controlled teams compete on a shared tile map, gathering resources and performing elevation rituals to win. The project is split into three pieces that only ever agree on a text protocol: a C server that owns the authoritative game state, an AI client written in any language, and a 2D GUI that visualizes the match live.</p>
 
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
-        <p class="muted" data-i18n="proj.zappy.role">Documented the codebase end-to-end with Doxygen across the server, AI client, and GUI, and started the README — support work that kept every team member's modules readable and consistent.</p>
+        <p class="muted" data-i18n="proj.zappy.role">Wrote end-to-end Doxygen documentation across the server, AI client, and GUI — reading and accurately documenting three subsystems across two languages — and started the README.</p>
 
         <div class="media-placeholder" aria-hidden="true">
           <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
@@ -202,7 +202,7 @@
         <p class="muted" data-i18n="proj.arcade.about">Arcade is built around runtime plugin-loading in C++: the core loads graphics libraries (SDL2, SFML, ncurses) and games (Snake, Nibbler, Solar Fox) as shared libraries via dlopen, so either one can be swapped live without recompiling. A shared IGraphics/IGame interface keeps every graphics backend and every game fully decoupled from the core — the main architectural challenge of the project.</p>
 
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
-        <p class="muted" data-i18n="proj.arcade.role">Wrote and maintained the project's documentation (inline function docs, README, the published doc site) and implemented the Nibbler game module.</p>
+        <p class="muted" data-i18n="proj.arcade.role">Implemented the Nibbler game module and kept the codebase documented end-to-end: inline function docs, the README, and the published documentation site.</p>
 
         <div class="media-placeholder" aria-hidden="true">
           <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
