@@ -786,6 +786,22 @@ section {
   color: var(--accent-2);
 }
 
+/* Placeholder slot for a project's screenshots/demo video, filled in later. */
+.media-placeholder {
+  margin-top: 1rem;
+  min-height: 160px;
+  border: 1px dashed var(--surface-border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
 /* Tech-stack chips (rendered from a comma list by script.js). */
 .tech-chips {
   display: flex;

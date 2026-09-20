@@ -123,8 +123,15 @@
         <p class="muted" data-i18n="proj.rtype.oneliner">Authoritative C++20 multiplayer remake of the 1987 arcade classic, built with a custom ECS and a UDP-first binary protocol.</p>
         <p class="meta tech-chips" data-i18n="proj.rtype.stack">Stack: C++20, SFML, ECS, UDP, CMake</p>
 
+        <h3 data-i18n="projectsPage.about">About the project</h3>
+        <p class="muted" data-i18n="proj.rtype.about">R-Type splits gameplay from presentation: a headless server runs the real, authoritative simulation while a thin SFML client only renders and captures input. The two talk over a custom binary UDP protocol with explicit headers and bounds-checked serialization, and all gameplay logic runs on a lightweight custom ECS (rtype_engine) shared by both binaries, so the simulation stays deterministic and in sync across every connected player.</p>
+
         <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
         <p class="muted" data-i18n="proj.rtype.role">Built the SFML client renderer and contributed to server-side game systems and the network protocol.</p>
+
+        <div class="media-placeholder" aria-hidden="true">
+          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
+        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/rtype" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -141,8 +148,15 @@
         <p class="muted" data-i18n="proj.area.oneliner">Action-Reaction automation platform (IFTTT-style) connecting GitHub, Microsoft 365, Steam, and more through OAuth-driven workflows.</p>
         <p class="meta tech-chips" data-i18n="proj.area.stack">Stack: FastAPI, Vue 3, PostgreSQL, Docker, Android</p>
 
+        <h3 data-i18n="projectsPage.about">About the project</h3>
+        <p class="muted" data-i18n="proj.area.about">AREA lets a user connect third-party services through OAuth, then chain an Action on one service to a Reaction on another — the same idea as IFTTT or Zapier. A FastAPI backend owns users, OAuth credentials, webhooks, and background schedulers; a Vue 3 web app and an Android companion app give two ways to build and monitor automations, with the whole stack running behind Docker Compose and a PostgreSQL database.</p>
+
         <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
         <p class="muted" data-i18n="proj.area.role">Built frontend views (services catalog, dashboard) and authored the architecture documentation.</p>
+
+        <div class="media-placeholder" aria-hidden="true">
+          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
+        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/area" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -159,8 +173,15 @@
         <p class="muted" data-i18n="proj.zappy.oneliner">Multiplayer network game where teams compete on a resource-tile map — server, AI client, and 2D GUI over a custom protocol.</p>
         <p class="meta tech-chips" data-i18n="proj.zappy.stack">Stack: C, C++, Doxygen</p>
 
+        <h3 data-i18n="projectsPage.about">About the project</h3>
+        <p class="muted" data-i18n="proj.zappy.about">Zappy is a real-time strategy game where several AI-controlled teams compete on a shared tile map, gathering resources and performing elevation rituals to win. The project is split into three pieces that only ever agree on a text protocol: a C server that owns the authoritative game state, an AI client written in any language, and a 2D GUI that visualizes the match live.</p>
+
         <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
         <p class="muted" data-i18n="proj.zappy.role">Built server networking (sockets, client lifecycle) and core game logic — resource distribution, player/egg management, time management.</p>
+
+        <div class="media-placeholder" aria-hidden="true">
+          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
+        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/zappy" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -177,8 +198,15 @@
         <p class="muted" data-i18n="proj.arcade.oneliner">Game engine with dynamically loaded graphics and game modules — swap SDL2, SFML, or ncurses, and Snake, Nibbler, or Solar Fox, at runtime.</p>
         <p class="meta tech-chips" data-i18n="proj.arcade.stack">Stack: C++, dlopen, SDL2, SFML, ncurses</p>
 
+        <h3 data-i18n="projectsPage.about">About the project</h3>
+        <p class="muted" data-i18n="proj.arcade.about">Arcade is built around runtime plugin-loading in C++: the core loads graphics libraries (SDL2, SFML, ncurses) and games (Snake, Nibbler, Solar Fox) as shared libraries via dlopen, so either one can be swapped live without recompiling. A shared IGraphics/IGame interface keeps every graphics backend and every game fully decoupled from the core — the main architectural challenge of the project.</p>
+
         <h3 data-i18n="projectsPage.whatIBuilt">What I built</h3>
         <p class="muted" data-i18n="proj.arcade.role">Implemented the Nibbler game module and the graphics abstraction interfaces (IGame/IGraphics) shared across libraries.</p>
+
+        <div class="media-placeholder" aria-hidden="true">
+          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
+        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/arcade" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
