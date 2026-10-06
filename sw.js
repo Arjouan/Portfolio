@@ -1,6 +1,6 @@
-// Offline cache for the portfolio. Bump CACHE to force-invalidate on updates
-// (rarely needed now: HTML is network-first, see below).
-const CACHE = "aj-portfolio-v6";
+// Offline cache for the portfolio. HTML, CSS and JS are network-first, so a
+// deploy shows up on the next load; bump CACHE only to drop old cached files.
+const CACHE = "aj-portfolio-v7";
 const CORE = [
   "./index.html",
   "./profile.html",
@@ -36,10 +36,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // HTML pages: network-first so content edits show up on next load without
-  // needing a manual CACHE version bump. Falls back to cache when offline.
+  // HTML, CSS and JS: network-first so a new deploy always shows up, with the
+  // page, stylesheet and script coming from the same version. Falls back to
+  // cache when offline.
+  const path = new URL(req.url).pathname;
   const isHtml = req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
-  if (isHtml) {
+  if (isHtml || path.endsWith(".css") || path.endsWith(".js")) {
     event.respondWith(
       fetch(req)
         .then((res) => {
@@ -54,7 +56,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Static assets (CSS/JS/fonts/images): cache-first for speed and offline use.
+  // Fonts and images: cache-first for speed and offline use.
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) {

@@ -560,6 +560,10 @@ a {
   gap: 0.8rem;
 }
 
+.section-more {
+  margin-top: 1rem;
+}
+
 /* Key figures row in the home hero. */
 .hero-stats {
   list-style: none;
@@ -1020,21 +1024,23 @@ body::before {
   .js .hero > .eyebrow,
   .js .hero > h1,
   .js .hero > .hero-text,
+  .js .hero > .hero-stats,
   .js .hero > .hero-actions {
     opacity: 0;
-    animation: hero-in 600ms ease forwards;
+    animation: hero-in 350ms ease forwards;
   }
 
   .js .hero > h1 {
-    animation-delay: 120ms;
+    animation-delay: 50ms;
   }
 
   .js .hero > .hero-text {
-    animation-delay: 240ms;
+    animation-delay: 100ms;
   }
 
+  .js .hero > .hero-stats,
   .js .hero > .hero-actions {
-    animation-delay: 360ms;
+    animation-delay: 150ms;
   }
 }
 
