@@ -1,6 +1,6 @@
 // Offline cache for the portfolio. Bump CACHE to force-invalidate on updates
 // (rarely needed now: HTML is network-first, see below).
-const CACHE = "aj-portfolio-v5";
+const CACHE = "aj-portfolio-v6";
 const CORE = [
   "./index.html",
   "./profile.html",
