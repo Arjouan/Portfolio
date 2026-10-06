@@ -71,6 +71,49 @@
     .section-block .card-links {
       margin-top: 1.1rem;
     }
+    .shot {
+      margin: 1rem 0 0;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #080808;
+    }
+
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1.1rem;
+    }
+
+    .shot-grid .shot {
+      margin: 0;
+    }
+
+    .story-list {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.7rem;
+    }
+
+    .story {
+      border-left: 3px solid var(--accent-2);
+      padding: 0.2rem 0 0.2rem 0.9rem;
+    }
+
+    .story p {
+      margin: 0;
+    }
+
+    .story .meta {
+      margin-top: 0.3rem;
+    }
   </style>
 </head>
 <body>
@@ -103,7 +146,7 @@
     <section class="hero">
       <p class="eyebrow" data-i18n="projectsPage.kicker">Selected Work</p>
       <h1 data-i18n="projectsPage.title">Project Details</h1>
-      <p class="hero-text" data-i18n="projectsPage.intro">A closer look at the group and solo projects I built at EPITECH — the goals, the tech, and the specific parts I owned. Across team projects, I paired hands-on feature work with ownership of the technical documentation — architecture diagrams, API references, contribution guides — that kept fast-moving codebases consistent for the rest of the team.</p>
+      <p class="hero-text" data-i18n="projectsPage.intro">A closer look at the products I have led and the projects I built at EPITECH: the problem, how we prioritised, and the parts I owned. Nexum and JEB Incubator show the product side; the technical projects below show the engineering background I bring to a development team.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="index.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
@@ -114,6 +157,107 @@
   </header>
 
   <main>
+    <section id="nexum" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker" data-i18n="projectsPage.leadKicker">Product Lead · Ongoing</p>
+        <h2 data-i18n="proj.nexum.title">Nexum</h2>
+      </div>
+      <article class="section-block">
+        <p class="muted" data-i18n="proj.nexum.oneliner">A no-code control centre that switches your whole PC setup (volume, brightness, lights, apps, games) in one click. Epitech Innovative Project, built by a team of five from July 2026 to July 2027.</p>
+        <p class="meta" data-i18n="proj.nexum.meta">Product Owner and project lead · Jul 2026 - Jul 2027 (ongoing)</p>
+        <p class="meta tech-chips" data-i18n="proj.nexum.stack">Stack: Rust, Tauri 2, React, TypeScript, SQLite, GitHub Projects</p>
+
+        <figure class="shot shot-hero">
+          <img src="assets/projects/nexum/dashboard.jpg" width="1400" height="875" alt="Nexum home screen: one card per mode, each activated in one click" loading="lazy" />
+        </figure>
+
+        <h3 data-i18n="projectsPage.problem">The problem and who it's for</h3>
+        <p class="muted" data-i18n="proj.nexum.problem">Switching from work to gaming, streaming or a quiet evening means adjusting a dozen things by hand, and every hardware brand ships its own app. Nexum is designed around three personas: Léo, a competitive gamer who wants zero setup time; Maxime, a streamer who wants to go live in one click; and Sarah, a remote developer who wants work and personal time clearly separated.</p>
+
+        <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
+        <p class="muted" data-i18n="proj.nexum.role">I own the roadmap, the backlog and the milestones, run the mentor follow-ups, and split the work across the team. I also contribute code on the front end and on macOS compatibility, including a local voice-command prototype.</p>
+
+        <h3 data-i18n="projectsPage.prioritise">How we prioritise</h3>
+        <ul class="detail-list">
+          <li data-i18n="proj.nexum.prio1">Every beta feature is ranked with MoSCoW: a Must blocks the beta, a Could is dropped if time runs out.</li>
+          <li data-i18n="proj.nexum.prio2">One scoping rule: 9 features that work 100% live beat 30 half-finished ones. The final jury demo has to run live, and video is not allowed.</li>
+          <li data-i18n="proj.nexum.prio3">Deliberately cut from the beta: macOS support, real RGB peripherals, marketplace payments, the full mobile app and the Epic/GOG launchers. Philips Hue stays as the one real hardware effect in the demo.</li>
+        </ul>
+
+        <h3 data-i18n="projectsPage.backlog">From the backlog</h3>
+        <div class="story-list">
+          <div class="story">
+            <p data-i18n-html="proj.nexum.story1"><strong>As Sarah</strong>, I want to build a Chill mode without writing code, so my evening setup is one click away.</p>
+            <p class="meta" data-i18n="proj.nexum.story1.ac">Acceptance: a new user creates and saves a mode with 3+ steps in under 3 minutes · the mode survives an app restart · the editor only offers allowlisted actions, so no code can be injected.</p>
+          </div>
+          <div class="story">
+            <p data-i18n-html="proj.nexum.story2"><strong>As Maxime</strong>, I want my Live mode to switch my Philips Hue lights, so my stream scene is set in one click.</p>
+            <p class="meta" data-i18n="proj.nexum.story2.ac">Acceptance: activating the mode physically changes a real Hue lamp in front of the jury · without a Hue bridge the step is flagged as incompatible, with no crash · under 2 seconds between activation and the light change.</p>
+          </div>
+          <div class="story">
+            <p data-i18n-html="proj.nexum.story3"><strong>As Léo</strong>, I want to describe a session in one sentence and get a ready-to-use mode.</p>
+            <p class="meta" data-i18n="proj.nexum.story3.ac">Acceptance: “set me up for a quiet Valorant session tonight” produces a coherent mode with valid actions · the generated mode passes the allowlist check before it can run · no AI output runs without going through validation.</p>
+          </div>
+        </div>
+
+        <h3 data-i18n="projectsPage.teamWork">How the team works</h3>
+        <ul class="detail-list">
+          <li data-i18n="proj.nexum.team1">I set up the GitHub Projects board (To do, In progress, Review, Done) with four milestones that mirror the EIP phases. The backlog holds 109 issues, each with a named owner.</li>
+          <li data-i18n="proj.nexum.team2">Every task gets its own branch, and nothing reaches main without a review and one approval from another teammate.</li>
+          <li data-i18n="proj.nexum.team3">Clear ownership: one main front-end developer, two back-end developers, one business and KPI owner, and me as Product Owner.</li>
+          <li data-i18n="proj.nexum.team4">Mentor follow-ups every six weeks, each one expected to show measurable progress.</li>
+        </ul>
+
+        <h3 data-i18n="projectsPage.aiSecurity">AI and security by design</h3>
+        <ul class="detail-list">
+          <li data-i18n="proj.nexum.ai1">Mode-as-Code: users describe a mode in a sentence. The AI only returns declarative data, which is checked against an allowlist before anything runs. It never generates executable code.</li>
+          <li data-i18n="proj.nexum.ai2">Modes shared on the marketplace go through static analysis and get a risk score before anyone can import them.</li>
+          <li data-i18n="proj.nexum.ai3">For voice commands I chose local Whisper transcription: free, offline, and no audio ever leaves the user's computer.</li>
+        </ul>
+
+        <div class="shot-grid">
+          <figure class="shot"><img src="assets/projects/nexum/studio.jpg" width="1400" height="875" alt="Studio: the no-code mode editor" loading="lazy" /></figure>
+          <figure class="shot"><img src="assets/projects/nexum/rules.jpg" width="1400" height="875" alt="Rules: an automation that switches to Chill at 18:00" loading="lazy" /></figure>
+          <figure class="shot"><img src="assets/projects/nexum/marketplace.jpg" width="1400" height="875" alt="Discover: shared modes, each with a risk level" loading="lazy" /></figure>
+        </div>
+
+        <h3 data-i18n="projectsPage.status">Where it stands</h3>
+        <p class="muted" data-i18n="proj.nexum.status">Phase 0 (foundations and market validation) runs until October 2026: the core app works and user interviews are starting. The first beta test plan is due in February 2027, and the live jury demo is in July 2027.</p>
+
+        <div class="card-links">
+          <a href="https://github.com/TeamNexum/Nexum" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
+          <a href="https://teamnexum.github.io/NexumWebsite/" target="_blank" rel="noreferrer" data-i18n="projectsPage.website">Website</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="jeb" class="section reveal">
+      <div class="section-title-wrap">
+        <p class="section-kicker" data-i18n="projectsPage.clientKicker">Client Project</p>
+        <h2 data-i18n="projects.jeb.title">JEB Incubator - Survivor Seminar EPITECH</h2>
+      </div>
+      <article class="section-block">
+        <p class="muted" data-i18n="projects.jeb.body">Delivered in 21 days a web platform designed to showcase incubator projects and facilitate connections between startups, investors, and partners.</p>
+        <p class="meta" data-i18n="projects.jeb.meta">Sep 2025 · Associated with EPITECH - European Institute of Technology</p>
+        <p class="meta tech-chips" data-i18n="projects.jeb.stack">Tech stack: Vite, Vue.js, Django, Python, Docker, GitHub Actions</p>
+
+        <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
+        <ul class="detail-list">
+          <li data-i18n="projects.jeb.detail4">Worked in agile mode with continuous client feedback and evolving requirements on features, priorities, and design.</li>
+          <li data-i18n="projects.jeb.detail1">Built project catalog pages, startup spaces, internal messaging, news, and event calendar features.</li>
+          <li data-i18n="projects.jeb.detail2">Implemented a full backend with CRUD operations and synchronized database integration with an existing API.</li>
+          <li data-i18n="projects.jeb.detail3">Developed a responsive, accessibility-focused frontend and an admin back-office for content, user, and statistics management.</li>
+        </ul>
+
+        <h3 data-i18n="projectsPage.results">Results</h3>
+        <ul class="detail-list">
+          <li data-i18n="projects.jeb.impact1">Grade A for the project delivery.</li>
+          <li data-i18n="projects.jeb.impact2">Functional solution delivered within a short timeline.</li>
+          <li data-i18n="projects.jeb.impact3">Strengthened fullstack, UX/UI, client management, and agile collaboration skills.</li>
+        </ul>
+      </article>
+    </section>
+
     <section id="rtype" class="section reveal">
       <div class="section-title-wrap">
         <p class="section-kicker" data-i18n="projectsPage.kicker">Selected Work</p>
@@ -129,9 +273,6 @@
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
         <p class="muted" data-i18n="proj.rtype.role">Shipped client-side gameplay features — enemy variety, projectile and collision behavior, visual polish — and kept the architecture doc, API reference, and README technically accurate.</p>
 
-        <div class="media-placeholder" aria-hidden="true">
-          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
-        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/rtype" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -154,9 +295,6 @@
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
         <p class="muted" data-i18n="proj.area.role">Authored the system architecture diagrams and the CONTRIBUTING guide the team built from, built frontend views (services catalog, dashboard), and kept the README technically accurate.</p>
 
-        <div class="media-placeholder" aria-hidden="true">
-          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
-        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/area" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -179,9 +317,6 @@
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
         <p class="muted" data-i18n="proj.zappy.role">Wrote end-to-end Doxygen documentation across the server, AI client, and GUI — reading and accurately documenting three subsystems across two languages — and started the README.</p>
 
-        <div class="media-placeholder" aria-hidden="true">
-          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
-        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/zappy" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -204,9 +339,6 @@
         <h3 data-i18n="projectsPage.whatIBuilt">My Role</h3>
         <p class="muted" data-i18n="proj.arcade.role">Implemented the Nibbler game module and kept the codebase documented end-to-end: inline function docs, the README, and the published documentation site.</p>
 
-        <div class="media-placeholder" aria-hidden="true">
-          <span data-i18n="projectsPage.mediaSoon">Screenshots and a demo video are coming soon.</span>
-        </div>
 
         <div class="card-links">
           <a href="https://github.com/Arjouan/arcade" target="_blank" rel="noreferrer" data-i18n="projectsPage.viewRepo">View Repository</a>
@@ -277,7 +409,7 @@
   </main>
 
   <footer class="section footer">
-    <p data-i18n-html="footer.projects"><span id="year"></span> Arnaud Jouan. Projects page.</p>
+    <p data-i18n-html="footer.projects">© <span id="year"></span> Arnaud Jouan. Projects page.</p>
   </footer>
 
   <script defer src="script.js"></script>
